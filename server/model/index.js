@@ -7,7 +7,8 @@ const config = {
   dialect: 'postgres'
 };
 
-const sequelize = new Sequelize('my_db', 'atai_ismaiilov', 'password', config);
+// change details
+const sequelize = new Sequelize('get-easy', 'postgres', 'towersofhanoi100', config);
 const db = {};
 
 const files = fs.readdirSync(__dirname);
