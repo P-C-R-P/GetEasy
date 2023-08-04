@@ -3,11 +3,13 @@ const db = require('../model/index');
 const getAllItems = async (req, res) => {
   try {
     const allItems = await db.item.findAll({
+      // WHY WE NEED THESE?
       include: [
         db.address,
         db.offer
       ]
     });
+
     res.status = 200;
     res.send(allItems);
   } catch (error) {
@@ -22,6 +24,8 @@ const getOwnItems = async (req, res) => {
       where: {
         id: userId
       },
+
+      // WHY DO WE NEED THESE?
         include: [
           {
             model: db.item,
@@ -32,6 +36,7 @@ const getOwnItems = async (req, res) => {
             include: db.address,
           }
         ]
+        
     });
 
     res.status = 200;
@@ -42,6 +47,7 @@ const getOwnItems = async (req, res) => {
   }
 }
 
+// DOES NOT DO A SINGLE THING
 const checkUser = async (req, res) => {
   const { id, email, name } = req.user;
   if (email) {

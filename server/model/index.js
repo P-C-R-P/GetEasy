@@ -8,7 +8,6 @@ const config = {
 };
 
 
-// change details
 const sequelize = new Sequelize('get-easy', 'postgres', `${process.env.POSTGRESQL_KEY}`, config);
 const db = {};
 

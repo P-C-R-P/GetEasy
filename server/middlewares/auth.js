@@ -1,5 +1,7 @@
 const db = require('../model/index');
 
+
+// DOES NOT DO A SINGLE THING
 const authMiddleware = async (req, res, next) => {  
   try {
     const { uid } = req.session;
