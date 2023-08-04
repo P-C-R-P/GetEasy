@@ -1,5 +1,6 @@
 const db = require('../model/index');
 
+// OFFER??? DOES NOT WORK. NO PRICE. MAKES 0 SENSE
 const insertUser = async (req, res) => {
   const {price, when, itemId} = req.body;
   try {

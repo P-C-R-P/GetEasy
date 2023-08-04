@@ -1,9 +1,13 @@
 const db = require('../model/index');
 const bcrypt = require('bcryptjs');
 
+// MORE AUTH STUFF THAT DOES NOT WORK
 const insertUser = async (req, res) => {
   const {name, email, password} = req.body;
   const user = await db.user.findOne({ where: { email } });
+
+
+  // MAYBE IMPORT AUTH MIDDLEWARE FUNCTION. LOOK MORE INTO IT
   if (user) {
     req.session.uid = user.id;
     return res

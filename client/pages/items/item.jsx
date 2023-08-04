@@ -23,6 +23,7 @@ export default function Item({ item }) {
     }
   }, []);
 
+  // DONT NEED DETAILS/DETAILS
   function onClickHandler() {
     setItem(item);
     router.replace('/details/details');

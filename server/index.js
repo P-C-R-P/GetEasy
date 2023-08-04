@@ -13,7 +13,7 @@ const corsConfig = {
   credentials: true,
 };
 
-
+// DOES NOT DOA SINGLE THING
 app.set('trust proxy', 1);
 app.use(
   session({
@@ -29,16 +29,20 @@ app.use(
     },
   })
 );
+
 app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router);
 
+
+// DELETE
 app.get('*', (req, res) => {
   res.status = 404;
   res.send('Page not found');
 });
 
 
+// MAYBE CONSIDER CHANGING .THEN TO ASYNC AWAIT
 db.sequelize.sync().then(() => {
   app.listen(port, () => {
     console.log(`App listening on port ${port}`)
