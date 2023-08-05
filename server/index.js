@@ -1,19 +1,22 @@
 const express = require('express');
 const app = express();
-const port = 3001;
-const db = require('./model/index');
+const PORT = 3001;
+const db = require('./models/index');
 const cors = require('cors');
 const router = require('./router');
+
+// Authentication stuff
 const session = require('express-session');
 
-
 const corsConfig = {
-  origin: "http://localhost:3000",
-  methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+  origin: 'http://localhost:3000',
+  // do we need to define methods?
+  methods: ["GET", "POST", "PUT", "OPTIONS", "HEAD"],
+  // do we need credentials?
   credentials: true,
 };
 
-// DOES NOT DOA SINGLE THING
+// Ask Atai
 app.set('trust proxy', 1);
 app.use(
   session({
@@ -30,24 +33,18 @@ app.use(
   })
 );
 
+
 app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router);
 
-
-// DELETE
-app.get('*', (req, res) => {
-  res.status = 404;
-  res.send('Page not found');
-});
-
-
-// MAYBE CONSIDER CHANGING .THEN TO ASYNC AWAIT
-db.sequelize.sync().then(() => {
-  app.listen(port, () => {
-    console.log(`App listening on port ${port}`)
-  })
-}).catch((err) => {
-  console.log('Failed to connect: ', err);  
-});
-
+(async () => {
+  try {
+    await db.sequelize.sync();
+    app.listen(PORT, () => {
+      console.log(`Server listening at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.log('Failed to connect to server: ', error);
+  }
+})();

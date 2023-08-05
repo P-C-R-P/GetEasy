@@ -1,7 +1,7 @@
-const db = require('../model/index');
+const db = require('../models/index');
 
-// OFFER??? DOES NOT WORK. NO PRICE. MAKES 0 SENSE
-const insertUser = async (req, res) => {
+// Ask Atai
+const createOffer = async (req, res) => {
   const {price, when, itemId} = req.body;
   try {
     const offer = await db.offer.create({price, when, itemId});
@@ -13,4 +13,4 @@ const insertUser = async (req, res) => {
 
 }
 
-module.exports = insertUser;
+module.exports = createOffer;

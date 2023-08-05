@@ -28,7 +28,7 @@ export default function SignIn() {
     e.preventDefault();
     const user = { name, email, password };
     apiService
-      .signin(user)
+      .signIn(user)
       .then(data => {
         if (data) {
           setIsSignedin(true);

@@ -1,4 +1,4 @@
-const db = require('../model/index');
+const db = require('../models/index');
 
 const getAllItems = async (req, res) => {
   try {
@@ -9,11 +9,10 @@ const getAllItems = async (req, res) => {
         db.offer
       ]
     });
-
     res.status = 200;
     res.send(allItems);
   } catch (error) {
-    console.log('Failed ', error);
+    console.log('Get all items failed: ', error);
   }
 }
 
@@ -24,7 +23,6 @@ const getOwnItems = async (req, res) => {
       where: {
         id: userId
       },
-
       // WHY DO WE NEED THESE?
         include: [
           {
@@ -36,19 +34,19 @@ const getOwnItems = async (req, res) => {
             include: db.address,
           }
         ]
-        
     });
 
     res.status = 200;
     res.send(allOwnItems.items);
-    
+
   } catch (error) {
     console.log('Failed ', error);
   }
 }
 
-// DOES NOT DO A SINGLE THING
+// Ask Atai
 const checkUser = async (req, res) => {
+  console.log(req.user);
   const { id, email, name } = req.user;
   if (email) {
     res.status(200);

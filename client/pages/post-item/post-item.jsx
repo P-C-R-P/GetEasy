@@ -36,12 +36,12 @@ export default function PostItem({ setIsCreateItem }) {
   async function submitHandler(e) {
     e.preventDefault();
     try {
-      const item = await apiService.inserItem({
+      const item = await apiService.createItem({
         name, description, weight, userId: user.id,
       });
 
       for (let address of addresses) {
-        await apiService.inserAddress({
+        await apiService.createAddress({
           itemId: item.id, lat: address.lat, lng: address.lng
         });
       }

@@ -1,8 +1,7 @@
-const db = require('../model/index');
+const db = require('../models/index');
 
-
-// DOES NOT DO A SINGLE THING
-const authMiddleware = async (req, res, next) => {  
+// Ask Atai
+const authMiddleware = async (req, res, next) => {
   try {
     const { uid } = req.session;
     const user = await db.user.findOne( { where :{ id : uid } });
@@ -10,7 +9,7 @@ const authMiddleware = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    res.sendStatus(401);
+    res.status(401).send(error);
   }
 };
 
