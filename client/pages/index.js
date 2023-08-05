@@ -6,7 +6,7 @@ import Dashboard from './dashboard/dashboard';
 import styles from '../styles/Dashboard.module.css';
 
 export default function Home() {
-  const { isSignedin } = useContext(UserContext);
+  const { isSignedIn } = useContext(UserContext);
   
   return (
     <div className={styles.container}>
@@ -16,7 +16,7 @@ export default function Home() {
       </Head>
       <main>
         {
-          !isSignedin ? <SignIn /> : <Dashboard />
+          !isSignedIn ? <SignIn /> : <Dashboard />
         }
       </main>
     </div>

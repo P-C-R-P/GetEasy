@@ -5,7 +5,7 @@ import { UserContext } from '../../context/user-context';
 
 export default function SignIn() {
 
-  const { setIsSignedin } = useContext(UserContext);
+  const { setIsSignedIn } = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,15 +27,17 @@ export default function SignIn() {
   const submitHandler = e => {
     e.preventDefault();
     const user = { name, email, password };
+    const savedUser = JSON.parse(localStorage.getItem("user"));
     apiService
       .signIn(user)
       .then(data => {
-        if (data) {
-          setIsSignedin(true);
-          localStorage.setItem('user', JSON.stringify(data));
+        if(data.key){
+          return alert(data.key)
         }
+          setIsSignedIn(true);
+          localStorage.setItem('user', JSON.stringify(data));
       })
-      .catch(err => console.log('Failed to signin ', err));
+      .catch(err => console.log('Failed to sign in ', err));
   }
 
   return (
@@ -52,6 +54,7 @@ export default function SignIn() {
           />
           <input className={styles.input}
             required
+            type="email"
             placeholder='Email'
             id='email'
             onChange={(e) => onChangeHandler(e)}
@@ -59,6 +62,9 @@ export default function SignIn() {
           />
           <input className={styles.input}
             required
+            type='password'
+            pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
+            title='Must contain at least 8 characters, including one number, one uppercase letter and one lowercase letter.'
             placeholder='Password'
             id='password'
             onChange={(e) => onChangeHandler(e)}
