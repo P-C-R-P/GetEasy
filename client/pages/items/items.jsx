@@ -15,9 +15,12 @@ export default function Items({ isOwnItems }) {
   }, [isOwnItems])
 
 
-  const itemsHTML = items.length && items.map((item, indx) =>
+  const itemsHTML = items.length > 0 ? items.map((item, indx) =>
     <Item key={indx} item={item} />
-  )
+  ) : <div className="no-items">
+    <p>Currently there are no items to display.</p>
+    <p>Click on 'Create Item' to get started.</p>
+    </div>
 
   return (
     <div className={styles.items_container}>
