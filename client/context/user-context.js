@@ -6,16 +6,16 @@ export const UserContext = createContext();
 export function AppWrapper({ children }) {
 
   const [itemState, setItem] = useState({});
-  const [isSignedin, setIsSignedin] = useState(async () => {
+  const [isSignedIn, setIsSignedIn] = useState(async () => {
     await apiService.checkUser().then( data => {
-     setIsSignedin(data);
-    }).catch( _ => setIsSignedin(false));
+     setIsSignedIn(data);
+    }).catch( _ => setIsSignedIn(false));
   })
   
   return (
     <UserContext.Provider value={ { 
       itemState, setItem,
-      isSignedin, setIsSignedin
+      isSignedIn, setIsSignedIn
       }}>
       {
         children

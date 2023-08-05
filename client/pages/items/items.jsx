@@ -14,7 +14,7 @@ export default function Items({ isOwnItems }) {
     else apiService.getAllItems().then(data => setItems(data));
   }, [isOwnItems])
 
-  console.log(user);
+
   const itemsHTML = items.length && items.map((item, indx) =>
     <Item key={indx} item={item} />
   )

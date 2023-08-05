@@ -6,11 +6,16 @@ async function checkEmail(email) {
 }
 
 async function createUser(req, res) {
+  console.log("got here");
   const { name, email, password } = req.body;
   const user = await checkEmail(email);
-  if (user && ) {
-    req.session.uid = user.id;
-    return res.status(200).send(user);
+  console.log(user);
+  if (user) {
+    if(bcrypt.compareSync(password, user.dataValues.password)){
+      req.session.uid = user.id;
+      return res.status(200).send(user);
+    }
+    return res.status(400).send({key: "Incorrect password."});
   }
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
