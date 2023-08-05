@@ -52,8 +52,10 @@ const apiService = {
 
   getPlaceNames: async (lat, lng) => {
     // change to api key
+    const API_KEY = process.env.GOOGLEAPI_KEY;
+    console.log(API_KEY);
     const queryParams = encodeURI(
-      `latlng=${lat},${lng}&key=${process.env.GOOGLEAPI_KEY}`
+      `latlng=${lat},${lng}&key=AIzaSyCxAoSGsBQWxWcL56cuUDv81zl8YhI4O4w`
     );
     return await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?${queryParams}`

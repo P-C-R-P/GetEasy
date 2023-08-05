@@ -3,7 +3,7 @@ import styles from '../../styles/Items.module.css';
 import apiService from '../../utils/api-service';
 import Image from 'next/image';
 import nextIcon from '../../public/images/next.svg';
-import { UserContext } from "../../context/user-context";
+import { UserContext } from '../../context/user-context';
 import { useRouter } from 'next/router';
 
 export default function Item({ item }) {
@@ -14,15 +14,15 @@ export default function Item({ item }) {
 
   useEffect(() => {
     for (let i = 0; i < item.addresses.length; i++) {
-      apiService.getPlaceNames(item.addresses[i].lat, item.addresses[i].lng)
-        .then(data => {
+      apiService
+        .getPlaceNames(item.addresses[i].lat, item.addresses[i].lng)
+        .then((data) => {
           if (i === 0) setPointA(data);
           if (i === 1) setPointB(data);
         });
     }
   }, []);
 
-  // DONT NEED DETAILS/DETAILS
   function onClickHandler() {
     setItem(item);
     router.replace('/details/details');
@@ -30,41 +30,41 @@ export default function Item({ item }) {
 
   return (
     <div className={styles.item_card}>
-      <Image className={styles.btn_details}
+      <Image
+        className={styles.btn_details}
         src={nextIcon}
-        alt='next button image'
+        alt="next button image"
         onClick={() => onClickHandler()}
       />
       <div className={styles.title_description_container}>
-        <div><strong>name:</strong> {item.name}</div>
-        <p><strong>description:</strong>  {item.description}</p>
+        <div className={styles.name}>
+          <h3 className={styles.tag}>
+            <strong>Name:</strong>
+          </h3>
+          <h3 className={styles.tag_text}>{item.name}</h3>
+        </div>
+        <div className={styles.description}>
+          <h3 className={styles.tag}>
+            <strong>Description:</strong>
+          </h3>
+          <h3 className={styles.tag_text}>{item.description}</h3>
+        </div>
       </div>
       <div className={styles.destination_container}>
-
         <div className={styles.address_holder}>
           <figcaption>Pick up:</figcaption>
-          <p>
-            {
-              pointA?.results[0]?.formatted_address
-            }
-          </p>
+          <p>{pointA?.results[0]?.formatted_address}</p>
         </div>
 
         <div className={styles.path_icon}>
-          -  -  -  -  -  -  {">"}
+          <p className={styles.arrow}>&rarr;</p>
         </div>
 
         <div className={styles.address_holder}>
-          <figcaption>drop off:</figcaption>
-          <p>
-            {
-              pointB?.results[0]?.formatted_address
-            }
-          </p>
+          <figcaption>Drop off:</figcaption>
+          <p>{pointB?.results[0]?.formatted_address}</p>
         </div>
-
       </div>
-
     </div>
-  )
+  );
 }

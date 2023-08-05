@@ -13,7 +13,8 @@ async function createItem(req, res) {
     res.status = 201;
     res.send(createdItem);
   } catch (error) {
-    console.log('Failed to create item: ', error);
+    res.status = 400;
+    res.send('Failed to create item; please provide a name.');
   }
 };
 

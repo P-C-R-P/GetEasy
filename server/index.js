@@ -38,13 +38,8 @@ app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router);
 
-(async () => {
-  try {
-    await db.sequelize.sync();
-    app.listen(PORT, () => {
-      console.log(`Server listening at http://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.log('Failed to connect to server: ', error);
-  }
-})();
+// app.closeServer = () => {
+//   server.close();
+// };
+
+module.exports = app;
