@@ -1,18 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 .details_main_container {
+  font-family: 'Geologica', sans-serif;
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 97vh;
   justify-content: center;
   align-items: center;
-
 }
 
 .details_container {
+  margin: 4vh 0vh 0vh 0vh;
+  background-color: lightgrey;
   display: flex;
   position: relative;
   flex-direction: column;
   width: 70%;
-  height: 95%;
+  height: 90%;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
@@ -22,10 +26,12 @@
 
 .btn_offer {
   position: absolute;
+  font-size: 20px;
   color: white;
-  background-color: green;
-  padding: 6px;
-  border-radius: 6px;
+  background-color: #398b27;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
   right: 20px;
   top: 15px;
   border: unset;
@@ -39,7 +45,6 @@
   text-align: center;
 }
 
-
 .map_container {
   width: 100%;
   height: 70%;
@@ -52,10 +57,37 @@
   left: 20px;
   top: 20px;
   position: absolute;
-  rotate: 180deg;
+  transform: rotate(180deg);
 }
 
 .btn_back:hover {
-  padding: 10px;
-  transform: scale(0.9);
+  cursor: pointer;
+}
+
+.details_name {
+  display: flex;
+}
+
+.details_description {
+  display: flex;
+}
+
+.details_weight {
+  display: flex;
+}
+
+.item_params {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.item_tag {
+  width: 15vw;
+  display: flex;
+}
+
+.item_text {
+  font-weight: 500;
 }

@@ -40,7 +40,7 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddress }) {
   }, []);
 
   function pickDestinations(e) {
-    if (a) return;
+    // if (a) return;
     if (!pickUpAddressSelected) setPointA({ lat: e.latLng.lat(), lng: e.latLng.lng() });
     else {
       setPointB(() => {

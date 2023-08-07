@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 .signin_container {
   display: flex;
   justify-content: flex-start;
@@ -53,14 +55,17 @@
 }
 
 .submit_btn {
+  font-family: 'Geologica', sans-serif;
+  font-size: 16px;
   height: 46px;
   width: 30%;
   align-self: center;
-  border-radius: 12px;
-  background: #62B545;
+  border-radius: 10px;
+  background: #398b27;
   border: unset;
   color: white;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
+  cursor: pointer;
 }

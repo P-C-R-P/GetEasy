@@ -7,7 +7,6 @@ const config = {
   dialect: 'postgres'
 };
 
-
 const sequelize = new Sequelize('test_get-easy', 'postgres', `${process.env.POSTGRESQL_KEY}`, config);
 const db = {};
 

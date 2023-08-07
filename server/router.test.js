@@ -4,7 +4,7 @@ require('@babel/polyfill');
 
 // user
 const mocks = {
-  user: {name: 'Pablo and Philippa', email: 'pandp@gmail.com', password:'Iamcuterthanpablo24!'}, item: {
+  user: {name: 'Pablo and Philippa', email: 'pandp@gmail.com', password:'IamcuterthanPablo24!'}, item: {
       name: 'Pablo',
       description: '2000s boi',
       weight: 60,

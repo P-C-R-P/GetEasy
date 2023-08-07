@@ -61,46 +61,69 @@ export default function PostItem({ setIsCreateItem }) {
 
   return (
     <div className={postStyles.post_container}>
-
       <div className={postStyles.logo_input_container}>
         <div className={styles.brand_logo}></div>
 
         <div className={styles.form_container}>
-          <form className={styles.form} onSubmit={e => submitHandler(e)} >
-            <input className={styles.input}
+          <form className={styles.form} onSubmit={(e) => submitHandler(e)}>
+            <input
+              className={styles.input}
               required
-              placeholder='Name'
-              id='name'
+              placeholder="Name"
+              id="name"
               onChange={(e) => onChangeHandler(e)}
               value={name}
             />
-            <input className={styles.input}
+            <input
+              className={styles.input}
               required
-              placeholder='Description'
-              id='description'
+              placeholder="Description"
+              id="description"
               onChange={(e) => onChangeHandler(e)}
               value={description}
             />
 
-            <div>
-              <input className={styles.input}
+            <div className={postStyles.weight_div}>
+              <input
+                className={styles.input}
                 required
                 type="number"
-                placeholder='Weight'
-                id='weight'
+                placeholder="Weight"
+                id="weight"
                 onChange={(e) => onChangeHandler(e)}
                 value={weight}
               />
-              <select name="measurement" id="weightMeasurement" defaultValue={weightMeasurement} value={weightMeasurement} onChange={(e) => onChangeHandler(e)}>
-
+              <select
+                className={postStyles.select_measurement}
+                name="measurement"
+                id="weightMeasurement"
+                defaultValue={weightMeasurement}
+                value={weightMeasurement}
+                onChange={(e) => onChangeHandler(e)}
+              >
                 <option value="kg">kg</option>
                 <option value="g">g</option>
                 <option value="lb">lb</option>
                 <option value="oz">oz</option>
               </select>
             </div>
+            <div className={postStyles.address_div}>
+              <input
+                className={styles.input}
+                id="pick-up-address"
+                placeholder="Pick up address" value={addresses}
+                onChange={(e) => onChangeHandler(e)}
+              />
+              <input
+                className={styles.input}
+                id="drop-off-address"
+                placeholder="Drop off address" value={addresses}
+                onChange={(e) => onChangeHandler(e)}
+              />
+            </div>
 
-            <button type='submit'
+            <button
+              type="submit"
               disabled={addresses.length !== 2}
               className={styles.submit_btn}
             >
@@ -110,23 +133,21 @@ export default function PostItem({ setIsCreateItem }) {
         </div>
       </div>
       <div className={postStyles.map_container}>
-        {
-          showPopup && !pickUpAddressSelected &&
+        {showPopup && !pickUpAddressSelected && (
           <PopUp
-            title='Please confirm that you selected address?'
-            yesBtnTtl='Yes'
-            noBtnTtl='No'
+            title="Please confirm selected address."
+            yesBtnTtl="Yes"
+            noBtnTtl="No"
             setAnswer={setShowPopup}
             setAddressSelected={setPickUpAddressSelected}
           />
-        }
+        )}
         <Map
           setShowPopup={setShowPopup}
           pickUpAddressSelected={pickUpAddressSelected}
           setAddress={setAddress}
         />
       </div>
-
     </div>
-  )
+  );
 }

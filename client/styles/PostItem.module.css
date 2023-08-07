@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 .post_container {
+  font-family: 'Geologica', sans-serif;
   width: 100vw;
   height: 100vh;
 }
 
 .logo_input_container {
+  font-family: 'Geologica', sans-serif;
+  margin: 7vh 0vh 0vh 0vh;
   display: flex;
   width: 100%;
   height: 50%;
@@ -13,4 +18,37 @@
   position: relative;
   width: 100%;
   height: 50%;
+}
+
+.select_measurement {
+  display: flex;
+  border-radius: 10px;
+  border-style: solid;
+  border-radius: 12px;
+  border: 2px solid #888585;
+  padding: 0px 20px;
+  letter-spacing: 2px;
+  font-family: 'Geologica', sans-serif;
+  height: 100%;
+  width: 15%;
+}
+
+.weight_div input {
+  width: 70%;
+}
+
+.weight_div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.address_div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.address_div input {
+  width: 40%;
 }
