@@ -8,6 +8,7 @@ const mocks = {
       name: 'Pablo',
       description: '2000s boi',
       weight: 60,
+      weightMeasurement: 'kg',
       userId: 1
 }, badItem: {
   }

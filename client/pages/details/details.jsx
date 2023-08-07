@@ -25,7 +25,7 @@ export default function Details() {
         <div className={styles.item_params}>
           <h1>{itemState.name}</h1>
           <p>{itemState.description}</p>
-          <i>{itemState.weight}</i>
+          <i>{itemState.weight}{itemState.weightMeasurement}</i>
         </div>
         <div className={styles.map_container}>
           {itemState.addresses &&

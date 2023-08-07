@@ -3,7 +3,6 @@ const db = require('../models/index');
 const getAllItems = async (req, res) => {
   try {
     const allItems = await db.item.findAll({
-      // WHY WE NEED THESE?
       include: [
         db.address,
         db.offer
@@ -23,7 +22,6 @@ const getOwnItems = async (req, res) => {
       where: {
         id: userId
       },
-      // WHY DO WE NEED THESE?
         include: [
           {
             model: db.item,

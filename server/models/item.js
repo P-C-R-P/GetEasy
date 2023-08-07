@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       weight: {
         type: DataTypes.FLOAT,
+      },
+      weightMeasurement: {
+        type: DataTypes.STRING,
       }
     },
     {

@@ -12,6 +12,7 @@ export default function PostItem({ setIsCreateItem }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [weight, setWeight] = useState();
+  const [weightMeasurement, setWeightMeasurement] = useState('kg');
 
   const [showPopup, setShowPopup] = useState(false);
   const [pickUpAddressSelected, setPickUpAddressSelected] = useState(false);
@@ -20,8 +21,10 @@ export default function PostItem({ setIsCreateItem }) {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const onChangeHandler = (e) => {
+    console.log(e.target.value);
     switch (e.target.id) {
       case 'name':
+        console.log('hey pretty');
         setName(e.target.value);
         break;
       case 'description':
@@ -30,6 +33,11 @@ export default function PostItem({ setIsCreateItem }) {
       case 'weight':
         setWeight(e.target.value);
         break;
+      case 'weightMeasurement':
+        console.log('hey pretty');
+        setWeightMeasurement(e.target.value);
+        console.log(weightMeasurement);
+        break;
     }
   }
 
@@ -37,9 +45,9 @@ export default function PostItem({ setIsCreateItem }) {
     e.preventDefault();
     try {
       const item = await apiService.createItem({
-        name, description, weight, userId: user.id,
+        name, description, weight, weightMeasurement, userId: user.id,
       });
-
+      console.log(item);
       for (let address of addresses) {
         await apiService.createAddress({
           itemId: item.id, lat: address.lat, lng: address.lng
@@ -73,14 +81,24 @@ export default function PostItem({ setIsCreateItem }) {
               onChange={(e) => onChangeHandler(e)}
               value={description}
             />
-            <input className={styles.input}
-              required
-              type="number"
-              placeholder='weight'
-              id='weight'
-              onChange={(e) => onChangeHandler(e)}
-              value={weight}
-            />
+
+            <div>
+              <input className={styles.input}
+                required
+                type="number"
+                placeholder='Weight'
+                id='weight'
+                onChange={(e) => onChangeHandler(e)}
+                value={weight}
+              />
+              <select name="measurement" id="weightMeasurement" defaultValue={weightMeasurement} value={weightMeasurement} onChange={(e) => onChangeHandler(e)}>
+
+                <option value="kg">kg</option>
+                <option value="g">g</option>
+                <option value="lb">lb</option>
+                <option value="oz">oz</option>
+              </select>
+            </div>
 
             <button type='submit'
               disabled={addresses.length !== 2}
