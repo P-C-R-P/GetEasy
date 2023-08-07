@@ -66,7 +66,17 @@ const apiService = {
   getOwnItems: async (userId) => {
     return await fetch(`${Base_URL}/${userId}`).then((res) => res.json());
   },
-};
 
+  checkEmail: async (email) => {
+    return await fetch(`${Base_URL}/check-email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({ email }),
+    }).then((res) => res.json());
+  },
+};
 
 export default apiService;

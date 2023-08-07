@@ -60,7 +60,7 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddress }) {
         setResponse(response);
       } else {
         count.current = 0;
-        console.log("response: ", response);
+        console.log("Response: ", response);
       }
     }
   };

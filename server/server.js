@@ -1,5 +1,6 @@
 const app = require('./index');
 const PORT = 3001;
+const db = require('./models/index');
 
 (async () => {
   try {

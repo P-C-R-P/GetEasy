@@ -3,7 +3,8 @@ const request = require('supertest');
 require('@babel/polyfill');
 
 // user
-const mocks = {item: {
+const mocks = {
+  user: {name: 'Pablo and Philippa', email: 'pandp@gmail.com', password:'Iamcuterthanpablo24!'}, item: {
       name: 'Pablo',
       description: '2000s boi',
       weight: 60,
@@ -12,9 +13,16 @@ const mocks = {item: {
   }
 }
 
-beforeEach(() => {
+beforeEach(async () => {
+  const user = mocks.user;
+  const response = await request(app).post('/user').send(user);
+  console.log(response);
 
 })
+
+// describe('post /user', () => {
+//   it('should create a new user account if the username provided is new')
+// })
 
 // need to change check user and add error?
 describe('get /check-user', () => {

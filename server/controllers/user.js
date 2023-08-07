@@ -1,21 +1,29 @@
 const db = require('../models/index');
 const bcrypt = require('bcryptjs');
 
-async function checkEmail(email) {
+async function checkEmailDB(email) {
   return await db.user.findOne({ where: { email } });
 }
 
+async function checkEmail(req, res) {
+  const email = req.body.email;
+  const check = await checkEmailDB(email);
+  if (check === null) {
+    res.status(200).send({key: 'No matching email in database.'});
+    return;
+  }
+  res.status(200).send(check);
+}
+
 async function createUser(req, res) {
-  console.log("got here");
   const { name, email, password } = req.body;
-  const user = await checkEmail(email);
-  console.log(user);
+  const user = await checkEmailDB(email);
   if (user) {
-    if(bcrypt.compareSync(password, user.dataValues.password)){
+    if (bcrypt.compareSync(password, user.dataValues.password)) {
       req.session.uid = user.id;
       return res.status(200).send(user);
     }
-    return res.status(400).send({key: "Incorrect password."});
+    return res.status(400).send({ key: 'Incorrect password.' });
   }
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
@@ -33,4 +41,4 @@ async function createUser(req, res) {
   }
 }
 
-module.exports = createUser;
+module.exports = { createUser, checkEmail };

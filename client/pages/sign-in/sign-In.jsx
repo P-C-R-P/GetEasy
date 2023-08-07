@@ -24,10 +24,15 @@ export default function SignIn() {
     }
   }
 
-  const submitHandler = e => {
+  const submitHandler = async e => {
     e.preventDefault();
     const user = { name, email, password };
-    const savedUser = JSON.parse(localStorage.getItem("user"));
+    const check = await apiService.checkEmail(user.email);
+    if (!check.key) {
+      if (check.name !== user.name) {
+        return alert('Email already registered.');
+      }
+    }
     apiService
       .signIn(user)
       .then(data => {
@@ -37,7 +42,7 @@ export default function SignIn() {
           setIsSignedIn(true);
           localStorage.setItem('user', JSON.stringify(data));
       })
-      .catch(err => console.log('Failed to sign in ', err));
+      .catch(err => console.log('Failed to sign in: ', err));
   }
 
   return (
