@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const { checkEmail, createUser } = require('./controllers/user');
+const { checkEmail, createUser, getUser } = require('./controllers/user');
 const createItem = require('./controllers/item');
 const createOffer = require('./controllers/offer');
 const createAddress = require('./controllers/address');
@@ -13,6 +13,9 @@ const { getAllItems, getOwnItems } = require('./controllers/home');
 const authMiddleware = require('./middleware/auth');
 router.post('/item', authMiddleware, createItem);
 
+// Change this route later.
+// CONSIDER CHANGING THIS ROUTE.
+router.get('/user/:id', getUser);
 
 router.post('/user', createUser);
 router.post('/check-email', checkEmail);

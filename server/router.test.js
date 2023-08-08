@@ -1,13 +1,21 @@
 const app = require('./index');
 const request = require('supertest');
 require('@babel/polyfill');
-const bcrypt = require('bcryptjs');
-
-// user
+// const bcrypt = require('bcryptjs');
 
 const mocks = {
-  registeredUser: { name: 'Pablo and Philippa', email: 'panettyfycgdp@gmail.com', password: 'IamcuterthanPablo24!' },
-  registeredUserWithHashedPassword: { name: 'Pablo and Philippa', email: 'panettyfycgdp@gmail.com', password: '$2a$10$4cuzzPWAETEh6lcljOhqmO61s6tv4zFdSzmYvuPurnUaZByUkUzz.', id: 3 },
+  registeredUser: {
+    name: 'Pablo and Philippa',
+    email: 'panettyfycgdp@gmail.com',
+    password: 'IamcuterthanPablo24!',
+  },
+  registeredUserWithHashedPassword: {
+    // The password hashing may change.
+    name: 'Pablo and Philippa',
+    email: 'panettyfycgdp@gmail.com',
+    password: '$2a$10$GlPiZP93HYfl9Av/JZTg/.8faXPhKAvpgebaN0DH9UUNoadjQHefm',
+    id: 3,
+  },
   item: {
     name: 'Pablo',
     description: '2000s boi',
@@ -16,52 +24,39 @@ const mocks = {
     weightMeasurement: 'kg',
   },
   registeredUserWrongPassword: {
-    name: 'Pablo and Philippa', email: 'panettyfycgdp@gmail.com', password: 'IamnotcuterthanPablo24!'
+    name: 'Pablo and Philippa',
+    email: 'panettyfycgdp@gmail.com',
+    password: 'IamnotcuterthanPablo24!',
   },
-  newUser: {
+  newUser1: {
     // The email should be changed every time we test for a new user.
-    name: 'Me', email: 'ab12@gmail.com', password: 'Verygoodpassword123@'
+    name: 'Me',
+    email: 'ab12569089876@gmail.com',
+    password: 'Verygoodpassword123@',
   },
-  badItem: {
-  }
-}
+  newUser2: {
+    // The email should be changed every time we test for a new user.
+    name: 'Me',
+    email: 'ab12568sdfsd76@gmail.com',
+    password: 'Verygoodpassword123@',
+  },
+  badItem: {},
+};
 
 
-
+// MAKE AUTHENTICATION WORK
 beforeEach(async () => {
   const loginResponse = await request(app)
     .post('/user')
     .send(mocks.registeredUser);
+  console.log('login response', loginResponse.body.password);
+  const response = await request(app)
+    .get(`user/${mocks.registeredUserWithHashedPassword.id}`)
+    .set('Authorization', `bearer ${loginResponse.body.password}`)
+    .send({});
+  console.log(response);
 })
 
-
-/*
-// need to change check user and add error?
-describe.only('get /check-user', () => {
-  it('should return a 200 and user data if the email associated with the user exists', async () => {
-    const response = await request(app).get('/check-user');
-    //console.log('this is the respones', response.res);
-    expect(response.status).toBe(200);
-    // expect response.body to equal ...
-  })
-})
-
-describe('post /item', () => {
-  it('should return a 201 if the item is successfully created', async () => {
-    const item = mocks.item;
-    const response = await request(app).post('/item').send(item);
-    expect(response.status).toBe(201);
-    expect(response.body).toBe(item);
-  })
-  it('should return a 400 if the item creation was unsuccessful (if no name is provided)', async () => {
-    const badItem = mocks.badItem;
-    const response = await request(app).post('/item').send(badItem);
-    expect(response.status).toBe(400);
-    expect(response.body).toBe('Failed to create item; please provide a name.');
-  })
-})
-
-*/
 describe('post /user', () => {
   it('should return a 200 if the email was already registered.', async () => {
     const user = mocks.registeredUser;
@@ -71,7 +66,7 @@ describe('post /user', () => {
     expect(response.body).toEqual(userWithHashedPassword);
   })
   it('should return a 201 if the email was successfully registered.', async () => {
-    const newUser = mocks.newUser;
+    const newUser = mocks.newUser1;
     const response = await request(app).post('/user').send(newUser);
     expect(response.status).toBe(201);
     expect(response.body.name).toEqual(newUser.name);
@@ -94,7 +89,7 @@ describe('post /check-email', () => {
     expect(response.body).toEqual(userWithHashedPassword);
   })
   it('should return a 404 if the email is not registered.', async () => {
-    const newUser = mocks.newUser;
+    const newUser = mocks.newUser2;
     const response = await request(app).post('/check-email').send(newUser);
     expect(response.status).toBe(404);
     expect(response.body).toEqual({ key: 'No matching email in database.' });
@@ -109,7 +104,7 @@ describe('get /', () => {
   })
 })
 
-// FINISH
+// FINISH GETTING ITEMS FOR USER
 describe('get /:userId', () => {
   it('should return a 200 and own items.', async () => {
     const response = await request(app).get('/:userId');
@@ -118,14 +113,13 @@ describe('get /:userId', () => {
   })
 })
 
+
+// FINISH POSTING ITEMS
 describe.only('post /item', () => {
-  it.only('should return a 201 and the created item if a name is provided.', async () => {
+  it('should return a 201 and the created item if a name is provided.', async () => {
     const item = mocks.item;
-    console.log(item);
     const response = await request(app).post('/item').send(item);
     expect(response.status).toBe(201);
-    console.log(response.body);
-    //expect(response.body.name).toEqual(newUser.name);
   })
   it('should return a 400 if no name is provided.', async () => {
     const userWithWrongPassword = mocks.registeredUserWrongPassword;
