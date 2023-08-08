@@ -10,22 +10,22 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onChangeHandler = (e) => {
-    switch (e.target.id) {
+  const onChangeHandler = (event) => {
+    switch (event.target.id) {
       case 'name':
-        setName(e.target.value);
+        setName(event.target.value);
         break;
       case 'email':
-        setEmail(e.target.value);
+        setEmail(event.target.value);
         break;
       case 'password':
-        setPassword(e.target.value);
+        setPassword(event.target.value);
         break;
     }
   }
 
-  const submitHandler = async e => {
-    e.preventDefault();
+  const submitHandler = async event => {
+    event.preventDefault();
     const user = { name, email, password };
     const check = await apiService.checkEmail(user.email);
     if (!check.key) {
@@ -48,13 +48,13 @@ export default function SignIn() {
   return (
     <div className={styles.signin_container}>
       <div className={styles.form_container}>
-        <form className={styles.form} onSubmit={e => submitHandler(e)} >
+        <form className={styles.form} onSubmit={e => submitHandler(event)} >
           <div className={styles.brand_logo}></div>
           <input className={styles.input}
             required
             placeholder='Name'
             id='name'
-            onChange={(e) => onChangeHandler(e)}
+            onChange={(event) => onChangeHandler(event)}
             value={name}
           />
           <input className={styles.input}
@@ -62,7 +62,7 @@ export default function SignIn() {
             type="email"
             placeholder='Email'
             id='email'
-            onChange={(e) => onChangeHandler(e)}
+            onChange={(event) => onChangeHandler(event)}
             value={email}
           />
           <input className={styles.input}
@@ -72,7 +72,7 @@ export default function SignIn() {
             title='Must contain at least 8 characters, including one number, one uppercase letter and one lowercase letter.'
             placeholder='Password'
             id='password'
-            onChange={(e) => onChangeHandler(e)}
+            onChange={(event) => onChangeHandler(event)}
             value={password}
           />
 

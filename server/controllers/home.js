@@ -42,16 +42,4 @@ const getOwnItems = async (req, res) => {
   }
 }
 
-// Ask Atai
-const checkUser = async (req, res) => {
-  console.log(req.user);
-  const { id, email, name } = req.user;
-  if (email) {
-    res.status(200);
-    res.send({ id, email, name });
-  }
-}
-
-
-
-module.exports =  { getAllItems, getOwnItems, checkUser };
+module.exports =  { getAllItems, getOwnItems };

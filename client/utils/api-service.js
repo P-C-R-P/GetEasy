@@ -13,15 +13,6 @@ const apiService = {
     }).then((res) => res.json());
   },
 
-  checkUser: async () => {
-    return await fetch(`${Base_URL}/check-user`, {
-      credentials: 'include',
-    }).then((res) => {
-      if (res.status === 440 || res.status === 401) return false;
-      else return res.json();
-    });
-  },
-
   createItem: async (item) => {
     return await fetch(`${Base_URL}/item`, {
       method: 'POST',

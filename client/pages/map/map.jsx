@@ -39,12 +39,12 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddress }) {
     mapRef.current = map;
   }, []);
 
-  function pickDestinations(e) {
+  function pickDestinations(event) {
     // if (a) return;
-    if (!pickUpAddressSelected) setPointA({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+    if (!pickUpAddressSelected) setPointA({ lat: event.latLng.lat(), lng: event.latLng.lng() });
     else {
       setPointB(() => {
-        const secondPint = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+        const secondPint = { lat: event.latLng.lat(), lng: event.latLng.lng() };
         setAddress([pointA, secondPint]);
         return secondPint;
       });

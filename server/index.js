@@ -36,8 +36,4 @@ app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router);
 
-// app.closeServer = () => {
-//   server.close();
-// };
-
 module.exports = app;

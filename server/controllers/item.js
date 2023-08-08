@@ -1,7 +1,6 @@
 const db = require('../models/index');
 
 async function createItem(req, res) {
-  console.log(req.body);
   const { name, description, weight, userId, weightMeasurement } = req.body;
   try {
     const createdItem = await db.item.create({
@@ -11,7 +10,6 @@ async function createItem(req, res) {
       userId,
       weightMeasurement
     });
-    console.log('created item', createdItem);
     res.status = 201;
     res.send(createdItem);
   } catch (error) {

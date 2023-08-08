@@ -3,8 +3,8 @@ import React from "react";
 
 export default function PopUp({ title, yesBtnTtl, noBtnTtl, setAnswer, setAddressSelected }) {
 
-  function handleAnswer(e) {
-    if (e.target.id === 'yes') setAddressSelected(true);
+  function handleAnswer(event) {
+    if (event.target.id === 'yes') setAddressSelected(true);
     else setAddressSelected(false);
     setAnswer(false);
   }

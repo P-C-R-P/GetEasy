@@ -20,29 +20,29 @@ export default function PostItem({ setIsCreateItem }) {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const onChangeHandler = (e) => {
-    console.log(e.target.value);
-    switch (e.target.id) {
+  const onChangeHandler = (event) => {
+    console.log(event.target.value);
+    switch (event.target.id) {
       case 'name':
         console.log('hey pretty');
-        setName(e.target.value);
+        setName(event.target.value);
         break;
       case 'description':
-        setDescription(e.target.value);
+        setDescription(event.target.value);
         break;
       case 'weight':
-        setWeight(e.target.value);
+        setWeight(event.target.value);
         break;
       case 'weightMeasurement':
         console.log('hey pretty');
-        setWeightMeasurement(e.target.value);
+        setWeightMeasurement(event.target.value);
         console.log(weightMeasurement);
         break;
     }
   }
 
-  async function submitHandler(e) {
-    e.preventDefault();
+  async function submitHandler(event) {
+    event.preventDefault();
     try {
       const item = await apiService.createItem({
         name, description, weight, weightMeasurement, userId: user.id,
@@ -65,13 +65,13 @@ export default function PostItem({ setIsCreateItem }) {
         <div className={styles.brand_logo}></div>
 
         <div className={styles.form_container}>
-          <form className={styles.form} onSubmit={(e) => submitHandler(e)}>
+          <form className={styles.form} onSubmit={(event) => submitHandler(event)}>
             <input
               className={styles.input}
               required
               placeholder="Name"
               id="name"
-              onChange={(e) => onChangeHandler(e)}
+              onChange={(event) => onChangeHandler(event)}
               value={name}
             />
             <input
@@ -79,7 +79,7 @@ export default function PostItem({ setIsCreateItem }) {
               required
               placeholder="Description"
               id="description"
-              onChange={(e) => onChangeHandler(e)}
+              onChange={(event) => onChangeHandler(event)}
               value={description}
             />
 
@@ -90,7 +90,7 @@ export default function PostItem({ setIsCreateItem }) {
                 type="number"
                 placeholder="Weight"
                 id="weight"
-                onChange={(e) => onChangeHandler(e)}
+                onChange={(event) => onChangeHandler(event)}
                 value={weight}
               />
               <select
@@ -99,7 +99,7 @@ export default function PostItem({ setIsCreateItem }) {
                 id="weightMeasurement"
                 defaultValue={weightMeasurement}
                 value={weightMeasurement}
-                onChange={(e) => onChangeHandler(e)}
+                onChange={(event) => onChangeHandler(event)}
               >
                 <option value="kg">kg</option>
                 <option value="g">g</option>
@@ -112,13 +112,13 @@ export default function PostItem({ setIsCreateItem }) {
                 className={styles.input}
                 id="pick-up-address"
                 placeholder="Pick up address" value={addresses}
-                onChange={(e) => onChangeHandler(e)}
+                onChange={(event) => onChangeHandler(event)}
               />
               <input
                 className={styles.input}
                 id="drop-off-address"
                 placeholder="Drop off address" value={addresses}
-                onChange={(e) => onChangeHandler(e)}
+                onChange={(event) => onChangeHandler(event)}
               />
             </div>
 
