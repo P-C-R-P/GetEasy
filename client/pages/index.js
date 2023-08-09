@@ -7,12 +7,12 @@ import styles from '../styles/Dashboard.module.css';
 
 export default function Home() {
   const { isSignedIn } = useContext(UserContext);
-  
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/images/brand-logo.svg" />
+        <link rel="icon" href="/images/get-easy-brand-icon.png" />
       </Head>
       <main>
         {

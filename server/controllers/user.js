@@ -42,6 +42,7 @@ async function createUser(req, res) {
     res.send(createdUser);
   } catch (error) {
     console.log('Create user failed: ', error);
+    res.status(400);
   }
 }
 

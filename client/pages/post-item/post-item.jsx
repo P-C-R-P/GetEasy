@@ -24,7 +24,6 @@ export default function PostItem({ setIsCreateItem }) {
     console.log(event.target.value);
     switch (event.target.id) {
       case 'name':
-        console.log('hey pretty');
         setName(event.target.value);
         break;
       case 'description':
@@ -34,9 +33,7 @@ export default function PostItem({ setIsCreateItem }) {
         setWeight(event.target.value);
         break;
       case 'weightMeasurement':
-        console.log('hey pretty');
         setWeightMeasurement(event.target.value);
-        console.log(weightMeasurement);
         break;
     }
   }
@@ -62,7 +59,7 @@ export default function PostItem({ setIsCreateItem }) {
   return (
     <div className={postStyles.post_container}>
       <div className={postStyles.logo_input_container}>
-        <div className={styles.brand_logo}></div>
+        <div className={postStyles.brand_logo}></div>
 
         <div className={styles.form_container}>
           <form className={styles.form} onSubmit={(event) => submitHandler(event)}>

@@ -47,7 +47,7 @@ const apiService = {
   },
 
   getAllItems: async () => {
-    return await fetch(`${Base_URL}/`, { credentials: 'include' }).then((res) =>
+    return await fetch(`${Base_URL}/all-items`, { credentials: 'include' }).then((res) =>
       res.json()
     );
   },

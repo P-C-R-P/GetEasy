@@ -30,7 +30,7 @@ export default function Item({ item }) {
 
   return (
     <div className={styles.item_card}>
-      <Image
+      <Image id="view-arrow"
         className={styles.btn_details}
         src={nextIcon}
         alt="next button image"

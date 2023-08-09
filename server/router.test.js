@@ -4,36 +4,6 @@ const session = require('express-session');
 const request = require('supertest');
 require('@babel/polyfill');
 
-// NEED TO CHANGE BC WE ADDED ROUTES AND CHANGED FUNCTIONALITY
-
-
-
-
-
-// const bcrypt = require('bcryptjs');
-
-// const mockApp = express();
-// mockApp.use(
-//   session({
-//     name: 'sid',
-//     saveUninitialized: true,
-//     resave: false,
-//     secret: 'SECRET',
-//     cookie: {
-//       maxAge: 1000 * 60 * 60,
-//       sameSite: true,
-//       httpOnly: true,
-//       secure: false,
-//     },
-//   })
-// );
-// mockApp.all('*', function (req, res, next) {
-//   req.session.uid = 3;
-//   next();
-// });
-
-// mockApp.use(app);
-
 const mocks = {
   registeredUser: {
     name: 'Pablo and Philippa',
@@ -62,40 +32,48 @@ const mocks = {
   newUser1: {
     // The email should be changed every time we test for a new user.
     name: 'Me',
-    email: 'ab12569089876@gmail.com',
+    email: 'ab17@gmail.com',
     password: 'Verygoodpassword123@',
   },
   newUser2: {
     // The email should be changed every time we test for a new user.
     name: 'Me',
-    email: 'ab12568sdfsd76@gmail.com',
+    email: 'bs79@gmail.com',
     password: 'Verygoodpassword123@',
   },
   badItem: {},
 };
 
-describe('post /user', () => {
-  it('should return a 200 if the email was already registered.', async () => {
+describe('post /user/login', () => {
+  it('should return a 200 if the email and password match.', async () => {
     const user = mocks.registeredUser;
     const userWithHashedPassword = mocks.registeredUserWithHashedPassword;
-    const response = await request(app).post('/user').send(user);
+    const response = await request(app).post('/user/login').send(user);
     expect(response.status).toBe(200);
     expect(response.body).toEqual(userWithHashedPassword);
   })
-  it('should return a 201 if the email was successfully registered.', async () => {
-    const newUser = mocks.newUser1;
-    const response = await request(app).post('/user').send(newUser);
-    expect(response.status).toBe(201);
-    expect(response.body.name).toEqual(newUser.name);
-    expect(response.body.email).toEqual(newUser.email);
-  })
   it('should return a 400 if the provided password is wrong.', async () => {
     const userWithWrongPassword = mocks.registeredUserWrongPassword;
-    const response = await request(app).post('/user').send(userWithWrongPassword);
+    const response = await request(app).post('/user/login').send(userWithWrongPassword);
     expect(response.status).toBe(400);
     expect(response.body).toEqual({ key: 'Incorrect password.' });
   })
 })
+
+describe('post /user/signup', () => {
+  it('should return a 201 if the user was successfully registered.', async () => {
+    const newUser = mocks.newUser1;
+    const response = await request(app).post('/user/signup').send(newUser);
+    expect(response.status).toBe(201);
+    expect(response.body.name).toEqual(newUser.name);
+    expect(response.body.email).toEqual(newUser.email);
+  });
+  // it('should return a 400 if creating a user was unsuccessful.', async () => {
+  //   const incorrectUser = { otherVariable: 'otherVariable' };
+  //   const response = await request(app).post('/user/signup').send(incorrectUser);
+  //   expect(response.status).toBe(400);
+  // });
+});
 
 describe('post /check-email', () => {
   it('should return an user and a 200 if the email is already registered.', async () => {
@@ -113,9 +91,9 @@ describe('post /check-email', () => {
   })
 })
 
-describe('get /', () => {
+describe('get /all-items', () => {
   it('should return a 200 and all items.', async () => {
-    const response = await request(app).get('/');
+    const response = await request(app).get('/all-items');
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body)).toBe(true);
   })
@@ -132,7 +110,7 @@ describe('get /:userId', () => {
 
 
 // FINISH POSTING ITEMS
-describe.only('post /item', () => {
+describe('post /item', () => {
   // MAKE AUTHENTICATION WORK
   beforeEach(async () => {
     const login = await request(app)

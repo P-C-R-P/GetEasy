@@ -28,7 +28,7 @@ router.post('/check-email', checkEmail);
 router.post('/offer', createOffer);
 router.post('/address', createAddress);
 
-router.get('/', getAllItems);
+router.get('/all-items', getAllItems);
 router.get('/:userId', getOwnItems);
 
 module.exports = router;

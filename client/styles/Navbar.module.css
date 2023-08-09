@@ -14,11 +14,11 @@
 }
 
 .brand_logo {
-  margin: 2vh 1vw 2vh 1vw;
-  height: 10vh;
-  width: 10vw;
+  margin: 2vh 2vw 2vh 2vw;
+  height: 12vh;
+  width: 14vh;
   align-self: center;
-  background-image: url('../public/images/nav_icon.svg');
+  background-image: url('../public/images/get-easy-brand-icon.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
