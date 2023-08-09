@@ -2,8 +2,19 @@ import 'dotenv/config';
 const Base_URL = 'http://localhost:3001';
 
 const apiService = {
-  signIn: async (user) => {
-    return await fetch(`${Base_URL}/user`, {
+  logIn: async (user) => {
+    return await fetch(`${Base_URL}/user/login`, {
+      credentials: 'include',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    }).then((res) => res.json());
+  },
+
+  signUp: async (user) => {
+    return await fetch(`${Base_URL}/user/signup`, {
       credentials: 'include',
       method: 'POST',
       headers: {

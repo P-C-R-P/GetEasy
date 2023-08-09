@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const { checkEmail, createUser, getUser } = require('./controllers/user');
+const { checkEmail, createUser, checkUser, getAllUsers } = require('./controllers/user');
 const createItem = require('./controllers/item');
 const createOffer = require('./controllers/offer');
 const createAddress = require('./controllers/address');
@@ -17,7 +17,13 @@ router.post('/item', authMiddleware, createItem);
 // CONSIDER CHANGING THIS ROUTE.
 // router.get('/user/:id', authMiddleware, getUser);
 
-router.post('/user', createUser);
+router.post('/user/signup', createUser);
+router.post('/user/login', checkUser);
+router.get('/user', getAllUsers)
+// add get all users route
+
+// add log out route
+
 router.post('/check-email', checkEmail);
 router.post('/offer', createOffer);
 router.post('/address', createAddress);

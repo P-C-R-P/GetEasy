@@ -3,6 +3,13 @@ const express = require('express');
 const session = require('express-session');
 const request = require('supertest');
 require('@babel/polyfill');
+
+// NEED TO CHANGE BC WE ADDED ROUTES AND CHANGED FUNCTIONALITY
+
+
+
+
+
 // const bcrypt = require('bcryptjs');
 
 // const mockApp = express();

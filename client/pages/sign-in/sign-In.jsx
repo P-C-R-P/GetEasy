@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styles from '../../styles/Sign-in.module.css';
 import apiService from '../../utils/api-service';
 import { UserContext } from '../../context/user-context';
@@ -9,6 +9,15 @@ export default function SignIn() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [selectedButton, setSelectedButton] = useState('');
+
+  const buttonHandler = event => {
+    if (event.target.value === 'signUp') {
+      setSelectedButton('signUp');
+    } else {
+      setSelectedButton('logIn');
+    }
+  }
 
   const onChangeHandler = (event) => {
     switch (event.target.id) {
@@ -24,23 +33,49 @@ export default function SignIn() {
     }
   }
 
+
   const submitHandler = async event => {
+    if (selectedButton === 'signUp') {
+      signUpHandler(event);
+    } else {
+      logInHandler(event);
+    }
+  }
+  const logInHandler = async event => {
     event.preventDefault();
     const user = { name, email, password };
     const check = await apiService.checkEmail(user.email);
-    if (!check.key) {
+    if (check.key) {
+      return alert('Email is not registered, please sign up.');
+    } else {
       if (check.name !== user.name) {
-        return alert('Email already registered.');
+        return alert('Email already registered with a different username.');
       }
     }
     apiService
-      .signIn(user)
+      .logIn(user)
       .then(data => {
-        if(data.key){
+        if (data.key) {
           return alert(data.key)
         }
-          setIsSignedIn(true);
-          localStorage.setItem('user', JSON.stringify(data));
+        setIsSignedIn(true);
+        localStorage.setItem('user', JSON.stringify(data));
+      })
+      .catch(err => console.log('Failed to sign in: ', err));
+  }
+
+  const signUpHandler = async event => {
+    event.preventDefault();
+    const user = { name, email, password };
+    const check = await apiService.checkEmail(user.email);
+    if (check.name) {
+      return alert('Email already registered.');
+    }
+    apiService
+      .signUp(user)
+      .then(data => {
+        setIsSignedIn(true);
+        localStorage.setItem('user', JSON.stringify(data));
       })
       .catch(err => console.log('Failed to sign in: ', err));
   }
@@ -76,8 +111,12 @@ export default function SignIn() {
             value={password}
           />
 
-          <button className={styles.submit_btn} type='submit' >
-            Submit
+          <button className={styles.submit_btn} type='submit' value='signUp' onClick={buttonHandler} >
+            Sign up
+          </button>
+
+          <button className={styles.submit_btn} type='submit' value='logIn' onClick={buttonHandler}>
+            Log in
           </button>
 
         </form>
