@@ -14,17 +14,19 @@ async function checkEmail(req, res) {
   }
   res.status(200).send(check);
 }
+function checkPassword(user, req, res) {
+      if (bcrypt.compareSync(req.body.password, user.dataValues.password)) {
+        req.session.uid = user.id;
+        return res.status(200).send(user);
+      }
+      return res.status(400).send({ key: 'Incorrect password.' });
+}
 
-// REFACTOR
 async function createUser(req, res) {
   const { name, email, password } = req.body;
   const user = await checkEmailDB(email);
   if (user) {
-    if (bcrypt.compareSync(password, user.dataValues.password)) {
-      req.session.uid = user.id;
-      return res.status(200).send(user);
-    }
-    return res.status(400).send({ key: 'Incorrect password.' });
+    return checkPassword(user, req, res);
   }
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
@@ -42,8 +44,8 @@ async function createUser(req, res) {
   }
 }
 
-async function getAllUsers() {
-  return await db.user.find({});
-}
+// async function getAllUsers() {
+//   return await db.user.find({});
+// }
 
 module.exports = { createUser, checkEmail };

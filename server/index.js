@@ -31,7 +31,6 @@ app.use(
   })
 );
 
-
 app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router);

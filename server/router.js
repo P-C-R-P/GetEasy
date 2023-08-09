@@ -15,7 +15,7 @@ router.post('/item', authMiddleware, createItem);
 
 // Change this route later.
 // CONSIDER CHANGING THIS ROUTE.
-router.get('/user/:id', getUser);
+// router.get('/user/:id', authMiddleware, getUser);
 
 router.post('/user', createUser);
 router.post('/check-email', checkEmail);

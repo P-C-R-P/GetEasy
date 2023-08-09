@@ -48,7 +48,7 @@ export default function SignIn() {
   return (
     <div className={styles.signin_container}>
       <div className={styles.form_container}>
-        <form className={styles.form} onSubmit={e => submitHandler(event)} >
+        <form className={styles.form} onSubmit={event => submitHandler(event)} >
           <div className={styles.brand_logo}></div>
           <input className={styles.input}
             required

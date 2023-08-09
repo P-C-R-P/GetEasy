@@ -12,7 +12,7 @@ const authMiddleware = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    console.log('YEAH IT IS HERE');
+    // console.log('YEAH IT IS HERE');
     res.status(401).send(error);
   }
 };

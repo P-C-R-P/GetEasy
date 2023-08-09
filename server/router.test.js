@@ -1,7 +1,31 @@
 const app = require('./index');
+const express = require('express');
+const session = require('express-session');
 const request = require('supertest');
 require('@babel/polyfill');
 // const bcrypt = require('bcryptjs');
+
+// const mockApp = express();
+// mockApp.use(
+//   session({
+//     name: 'sid',
+//     saveUninitialized: true,
+//     resave: false,
+//     secret: 'SECRET',
+//     cookie: {
+//       maxAge: 1000 * 60 * 60,
+//       sameSite: true,
+//       httpOnly: true,
+//       secure: false,
+//     },
+//   })
+// );
+// mockApp.all('*', function (req, res, next) {
+//   req.session.uid = 3;
+//   next();
+// });
+
+// mockApp.use(app);
 
 const mocks = {
   registeredUser: {
@@ -42,20 +66,6 @@ const mocks = {
   },
   badItem: {},
 };
-
-
-// MAKE AUTHENTICATION WORK
-beforeEach(async () => {
-  const loginResponse = await request(app)
-    .post('/user')
-    .send(mocks.registeredUser);
-  console.log('login response', loginResponse.body.password);
-  const response = await request(app)
-    .get(`user/${mocks.registeredUserWithHashedPassword.id}`)
-    .set('Authorization', `bearer ${loginResponse.body.password}`)
-    .send({});
-  console.log(response);
-})
 
 describe('post /user', () => {
   it('should return a 200 if the email was already registered.', async () => {
@@ -116,15 +126,31 @@ describe('get /:userId', () => {
 
 // FINISH POSTING ITEMS
 describe.only('post /item', () => {
+  // MAKE AUTHENTICATION WORK
+  beforeEach(async () => {
+    const login = await request(app)
+      .post('/user')
+      .send(mocks.registeredUser);
+    console.log(login.body);
+    // console.log('login response', loginResponse.body);
+    // const response = await request(app)
+    //   .get(`user/${mocks.registeredUserWithHashedPassword.id}`)
+    //   .set('Authorization', `bearer ${loginResponse.body.password}`)
+    //   .send({});
+    // console.log(response);
+  });
   it('should return a 201 and the created item if a name is provided.', async () => {
+    // await request(app).post('/user').send(mocks.registeredUser);
     const item = mocks.item;
     const response = await request(app).post('/item').send(item);
     expect(response.status).toBe(201);
-  })
-  it('should return a 400 if no name is provided.', async () => {
-    const userWithWrongPassword = mocks.registeredUserWrongPassword;
-    const response = await request(app).post('/user').send(userWithWrongPassword);
-    expect(response.status).toBe(400);
-    expect(response.body).toEqual({ key: 'Incorrect password.' });
-  })
+  });
+  // it('should return a 400 if no name is provided.', async () => {
+  //   const userWithWrongPassword = mocks.registeredUserWrongPassword;
+  //   const response = await request(app)
+  //     .post('/user')
+  //     .send(userWithWrongPassword);
+  //   expect(response.status).toBe(400);
+  //   expect(response.body).toEqual({ key: 'Incorrect password.' });
+  // });
 })
