@@ -42,7 +42,7 @@ describe('Log in and sign up component', () => {
   });
 });
 
-describe.only('Dashboard component', () => {
+describe('Dashboard component', () => {
   beforeEach(() => {
     cy.visit('localhost:3000/');
     cy.get('#name').type('Test');
@@ -54,6 +54,43 @@ describe.only('Dashboard component', () => {
     cy.get('#view-arrow').click();
     cy.url().should('include', '/details/details');
   });
+  it('should change to the create item page when you click create item', function () {
+    cy.get('li').contains('create item').click();
+    cy.contains('Submit');
+  });
+  it('should change to my items when you click on my items', function () {
+    cy.get('li').contains('my items').click();
+    cy.get('li').contains('all items');
+  })
+  it.only('should change to all items when you click on the logo', function () {
+    cy.get('li').contains('my items').click();
+    cy.get('#brand-logo').click();
+    cy.get('li').contains('my items');
+  })
 });
 
+describe('Create item component', () => {
+  beforeEach(() => {
+    cy.visit('localhost:3000/');
+    cy.get('#name').type('Test');
+    cy.get('#email').type('test@email.com');
+    cy.get('#password').type('testPassword1!');
+    cy.get('form').submit();
+    cy.get('li').contains('create item').click();
+    cy.contains('Submit');
+  });
+  it('correctly inputs into form fields to create item on dashboard', function () {
+    // Typed values need to be changed upon every test.
+    cy.get('#name').type('New test item').should('have.value', 'New test item');
+    cy.get('#description').type('A new item.').should('have.value', 'A new item.');
+    cy.get('#weight').type('123').should('have.value', '123');
+    cy.get('#weightMeasurement').select('lb').should('have.value', 'lb');
+    cy.get('#maps').click(100, 100);
+    cy.get('#yes').click();
+    cy.get('#maps').click(200, 200);
+    cy.get('form').submit();
+    cy.contains('New test item');
+  });
+
+});
 // possibility of checking incorrect password/email combination

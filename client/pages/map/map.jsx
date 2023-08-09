@@ -68,6 +68,7 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddress }) {
   return isLoaded ? (
     <>
       <GoogleMap
+        id="maps"
         mapContainerStyle={containerStyle}
         zoom={13}
         onClick={pickDestinations}
