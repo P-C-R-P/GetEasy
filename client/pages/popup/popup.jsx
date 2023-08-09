@@ -1,12 +1,18 @@
 import styles from '../../styles/Popups.module.css';
 import React from "react";
 
-export default function PopUp({ title, yesBtnTtl, noBtnTtl, setAnswer, setAddressSelected }) {
+export default function PopUp({ title, yesBtnTtl, noBtnTtl, setAnswer, pickUpAddressSelected, setPickUpAddressSelected, setDropOffAddressSelected }) {
 
   function handleAnswer(event) {
-    if (event.target.id === 'yes') setAddressSelected(true);
-    else setAddressSelected(false);
-    setAnswer(false);
+    if (event.target.id === 'yes') {
+      if (!pickUpAddressSelected) {
+        setPickUpAddressSelected(true);
+        setAnswer(false);
+      } else {
+        setDropOffAddressSelected(true);
+      }
+    }
+    else setAnswer(false);
   }
 
   return (

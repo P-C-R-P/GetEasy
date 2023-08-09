@@ -16,7 +16,8 @@ export default function PostItem({ setIsCreateItem }) {
 
   const [showPopup, setShowPopup] = useState(false);
   const [pickUpAddressSelected, setPickUpAddressSelected] = useState(false);
-  const [addresses, setAddress] = useState([]);
+  const [dropOffAddressSelected, setDropOffAddressSelected] = useState(false);
+  const [addresses, setAddresses] = useState([]);
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -35,6 +36,8 @@ export default function PostItem({ setIsCreateItem }) {
       case 'weightMeasurement':
         setWeightMeasurement(event.target.value);
         break;
+      case 'pick-up-address':
+        setAddresses([event.target.value]);
     }
   }
 
@@ -45,6 +48,7 @@ export default function PostItem({ setIsCreateItem }) {
         name, description, weight, weightMeasurement, userId: user.id,
       });
       console.log(item);
+      console.log(addresses);
       for (let address of addresses) {
         await apiService.createAddress({
           itemId: item.id, lat: address.lat, lng: address.lng
@@ -108,13 +112,13 @@ export default function PostItem({ setIsCreateItem }) {
               <input
                 className={styles.input}
                 id="pick-up-address"
-                placeholder="Pick up address" value={addresses}
+                placeholder="Pick up address" value={addresses[0].lat}
                 onChange={(event) => onChangeHandler(event)}
               />
               <input
                 className={styles.input}
                 id="drop-off-address"
-                placeholder="Drop off address" value={addresses}
+                placeholder="Drop off address" value={addresses[1]}
                 onChange={(event) => onChangeHandler(event)}
               />
             </div>
@@ -130,19 +134,23 @@ export default function PostItem({ setIsCreateItem }) {
         </div>
       </div>
       <div className={postStyles.map_container}>
-        {showPopup && !pickUpAddressSelected && (
+        {showPopup && (!pickUpAddressSelected || !dropOffAddressSelected) && (
           <PopUp
             title="Please confirm selected address."
             yesBtnTtl="Yes"
             noBtnTtl="No"
             setAnswer={setShowPopup}
-            setAddressSelected={setPickUpAddressSelected}
+            pickUpAddressSelected={pickUpAddressSelected}
+            setPickUpAddressSelected={setPickUpAddressSelected}
+            dropOffAddressSelected={dropOffAddressSelected}
+            setDropOffAddressSelected={setDropOffAddressSelected}
           />
         )}
         <Map
           setShowPopup={setShowPopup}
           pickUpAddressSelected={pickUpAddressSelected}
-          setAddress={setAddress}
+          setAddresses={setAddresses}
+          addresses={addresses}
         />
       </div>
     </div>

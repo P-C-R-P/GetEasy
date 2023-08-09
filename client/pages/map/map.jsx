@@ -19,7 +19,7 @@ const center = {
 };
 
 
-function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddress }) {
+function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddresses, addresses }) {
 
   const [pointA, setPointA] = useState(a || {});
   const [pointB, setPointB] = useState(b || {});
@@ -40,13 +40,14 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddress }) {
   }, []);
 
   function pickDestinations(event) {
-    // if (a) return;
+    if(pointB.lat) return;
     if (!pickUpAddressSelected) setPointA({ lat: event.latLng.lat(), lng: event.latLng.lng() });
     else {
       setPointB(() => {
-        const secondPint = { lat: event.latLng.lat(), lng: event.latLng.lng() };
-        setAddress([pointA, secondPint]);
-        return secondPint;
+        const secondPoint = { lat: event.latLng.lat(), lng: event.latLng.lng() };
+        setAddresses([pointA]);
+        setAddresses([pointA, secondPoint]);
+        return secondPoint;
       });
     }
     setShowPopup(true);
@@ -97,11 +98,19 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddress }) {
           </>
         }
         {
-          Object.keys(pointB).length < 1 &&
+          Object.keys(pointA).length >= 1 &&
           <Marker
             position={{
               lat: pointA.lat,
               lng: pointA.lng
+            }} />
+        }
+                {
+          addresses.length <= 2 &&
+          <Marker
+            position={{
+              lat: pointB.lat,
+              lng: pointB.lng
             }} />
         }
       </GoogleMap>
