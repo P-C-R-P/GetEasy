@@ -8,9 +8,14 @@ export default function Navbar({ setIsOwnItem, isOwnItem, setIsCreateItem }) {
     setIsCreateItem(false);
   }
 
+  function handleLogoClick() {
+    setIsOwnItem(false);
+    setIsCreateItem(false);
+  }
+
   return (
     <div className={styles.navbar_container}>
-      <div className={styles.brand_logo}></div>
+      <div id="brand-logo" onClick={() => handleLogoClick()} className={styles.brand_logo}></div>
       <div className={styles.button_container}>
         <ul>
           <li onClick={() => onClickHandler()}>
