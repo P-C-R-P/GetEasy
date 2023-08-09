@@ -12,6 +12,7 @@ export default function Items({ isOwnItems }) {
     user = JSON.parse(localStorage.getItem("user"));
     if (isOwnItems) apiService.getOwnItems(user.id).then(data => setItems(data));
     else apiService.getAllItems().then(data => setItems(data));
+    console.log('all items', items);
   }, [isOwnItems])
 
 

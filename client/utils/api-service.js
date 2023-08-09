@@ -58,7 +58,7 @@ const apiService = {
     console.log(API_KEY);
     const queryParams = encodeURI(
       // key removed
-      `latlng=${lat},${lng}&key=`
+      `latlng=${lat},${lng}&key=${API_KEY}`
     );
     return await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?${queryParams}`

@@ -45,7 +45,6 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddresses, addresse
     else {
       setPointB(() => {
         const secondPoint = { lat: event.latLng.lat(), lng: event.latLng.lng() };
-        setAddresses([pointA]);
         setAddresses([pointA, secondPoint]);
         return secondPoint;
       });

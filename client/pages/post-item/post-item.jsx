@@ -6,9 +6,7 @@ import PopUp from '../popup/popup';
 import { useState } from 'react';
 import apiService from '../../utils/api-service';
 
-
 export default function PostItem({ setIsCreateItem }) {
-
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [weight, setWeight] = useState();
@@ -18,11 +16,12 @@ export default function PostItem({ setIsCreateItem }) {
   const [pickUpAddressSelected, setPickUpAddressSelected] = useState(false);
   const [dropOffAddressSelected, setDropOffAddressSelected] = useState(false);
   const [addresses, setAddresses] = useState([]);
+  const [pickUp, setPickUp] = useState('');
+  const [dropOff, setDropOff] = useState('');
 
   const user = JSON.parse(localStorage.getItem('user'));
 
   const onChangeHandler = (event) => {
-    console.log(event.target.value);
     switch (event.target.id) {
       case 'name':
         setName(event.target.value);
@@ -37,26 +36,46 @@ export default function PostItem({ setIsCreateItem }) {
         setWeightMeasurement(event.target.value);
         break;
       case 'pick-up-address':
-        setAddresses([event.target.value]);
+        setPickUp(event.target.value);
+        break;
+      case 'drop-off-address':
+        setDropOff(event.target.value);
+        setAddresses([pickUp, dropOff]);
+        break;
     }
-  }
+  };
 
   async function submitHandler(event) {
     event.preventDefault();
     try {
       const item = await apiService.createItem({
-        name, description, weight, weightMeasurement, userId: user.id,
+        name,
+        description,
+        weight,
+        weightMeasurement,
+        userId: user.id,
       });
-      console.log(item);
-      console.log(addresses);
-      for (let address of addresses) {
-        await apiService.createAddress({
-          itemId: item.id, lat: address.lat, lng: address.lng
+      console.log('item', item);
+      if (pickUp.length > 3 && dropOff.length > 3) {
+        console.log('yayyy wooooo');
+        const address = await apiService.createAddress({
+          itemId: item.id,
+          pickUp: pickUp,
+          dropOff: dropOff,
         });
+        console.log('address', address);
+      } else {
+        for (let address of addresses) {
+          await apiService.createAddress({
+            itemId: item.id,
+            lat: address.lat,
+            lng: address.lng,
+          });
+        }
       }
-      setIsCreateItem(false)
+      setIsCreateItem(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -66,7 +85,10 @@ export default function PostItem({ setIsCreateItem }) {
         <div className={postStyles.brand_logo}></div>
 
         <div className={styles.form_container}>
-          <form className={styles.form} onSubmit={(event) => submitHandler(event)}>
+          <form
+            className={styles.form}
+            onSubmit={(event) => submitHandler(event)}
+          >
             <input
               className={styles.input}
               required
@@ -112,13 +134,15 @@ export default function PostItem({ setIsCreateItem }) {
               <input
                 className={styles.input}
                 id="pick-up-address"
-                placeholder="Pick up address" value={addresses[0].lat}
+                placeholder="Pick up address"
+                value={pickUp}
                 onChange={(event) => onChangeHandler(event)}
               />
               <input
                 className={styles.input}
                 id="drop-off-address"
-                placeholder="Drop off address" value={addresses[1]}
+                placeholder="Drop off address"
+                value={dropOff}
                 onChange={(event) => onChangeHandler(event)}
               />
             </div>

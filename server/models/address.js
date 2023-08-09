@@ -14,8 +14,15 @@ module.exports = (sequelize, DataTypes) => {
 
       lng: {
         type: DataTypes.FLOAT,
-        allowNull: false
       },
+      pickUp: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      dropOff: {
+        type: DataTypes.STRING,
+        allowNull: true
+      }
     },
     {
       timestamps: false,

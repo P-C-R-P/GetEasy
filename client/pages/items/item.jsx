@@ -14,12 +14,17 @@ export default function Item({ item }) {
 
   useEffect(() => {
     for (let i = 0; i < item.addresses.length; i++) {
-      apiService
-        .getPlaceNames(item.addresses[i].lat, item.addresses[i].lng)
-        .then((data) => {
-          if (i === 0) setPointA(data);
-          if (i === 1) setPointB(data);
-        });
+      if (item.addresses[i].pickUp !== null) {
+        setPointA(item.addresses[i].pickUp);
+        setPointB(item.addresses[i].dropOff);
+      } else {
+        apiService
+          .getPlaceNames(item.addresses[i].lat, item.addresses[i].lng)
+          .then((data) => {
+            if (i === 0) setPointA(data);
+            if (i === 1) setPointB(data);
+          });
+      }
     }
   }, []);
 
@@ -30,7 +35,8 @@ export default function Item({ item }) {
 
   return (
     <div className={styles.item_card}>
-      <Image id="view-arrow"
+      <Image
+        id="view-arrow"
         className={styles.btn_details}
         src={nextIcon}
         alt="next button image"
@@ -53,7 +59,9 @@ export default function Item({ item }) {
       <div className={styles.destination_container}>
         <div className={styles.address_holder}>
           <figcaption>Pick up:</figcaption>
-          <p>{pointA?.results[0]?.formatted_address}</p>
+          <p>
+            {pointA?.results ? pointA?.results[0]?.formatted_address : pointA}
+          </p>
         </div>
 
         <div className={styles.path_icon}>
@@ -62,7 +70,9 @@ export default function Item({ item }) {
 
         <div className={styles.address_holder}>
           <figcaption>Drop off:</figcaption>
-          <p>{pointB?.results[0]?.formatted_address}</p>
+          <p>
+            {pointB?.results ? pointB?.results[0]?.formatted_address : pointB}
+          </p>
         </div>
       </div>
     </div>
