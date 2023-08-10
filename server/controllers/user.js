@@ -1,11 +1,11 @@
 const db = require('../models/index');
 const bcrypt = require('bcryptjs');
 
-async function checkEmailDB(email) {
+async function checkEmailDB (email) {
   return await db.user.findOne({ where: { email } });
 }
 
-async function checkEmail(req, res) {
+async function checkEmail (req, res) {
   const email = req.body.email;
   const check = await checkEmailDB(email);
   if (check === null) {
@@ -15,7 +15,7 @@ async function checkEmail(req, res) {
   res.status(200).send(check);
 }
 
-function checkPassword(user, req, res) {
+function checkPassword (user, req, res) {
   if (bcrypt.compareSync(req.body.password, user.dataValues.password)) {
     req.session.uid = user.id;
     return res.status(200).send(user);
@@ -23,7 +23,8 @@ function checkPassword(user, req, res) {
   return res.status(400).send({ key: 'Incorrect password.' });
 }
 
-async function createUser(req, res) {
+async function createUser (req, res) {
+  console.log(req.session);
   const { name, email, password } = req.body;
   const user = await checkEmailDB(email);
   if (user) {
@@ -34,7 +35,7 @@ async function createUser(req, res) {
     const createdUser = await db.user.create({
       name,
       email,
-      password: hashedPassword,
+      password: hashedPassword
     });
     const { id } = createdUser;
     req.session.uid = id;
@@ -46,16 +47,15 @@ async function createUser(req, res) {
   }
 }
 
-async function checkUser(req, res) {
+async function checkUser (req, res) {
   const { email } = req.body;
   const user = await checkEmailDB(email);
   if (user) {
     return checkPassword(user, req, res);
   }
-  return;
 }
 
-async function getAllUsers(req, res) {
+async function getAllUsers (req, res) {
   try {
     const allUsers = await db.user.findAll({});
     res.status = 200;
@@ -65,5 +65,28 @@ async function getAllUsers(req, res) {
   }
 }
 
-
+/*
+const create = async (req, res) => {
+  const { email, password } = req.body;
+  //is there a user?
+  const user = await User.findOne({ email: email });
+  if (user)
+    return res
+      .status(409)
+      .send({ error: '409', message: 'User already exists' }); //debatable for security
+  try {
+    if (password === '') throw new Error();
+    const hash = await bcrypt.hash(password, 10);
+    const newUser = new User({
+      ...req.body,
+      password: hash,
+    });
+    const user = await newUser.save();
+    req.session.uid = user._id;   //req.session -> {name: 'sid', sessionId: <some id>, cookie: {<cookie props}, uid: user id}
+    res.status(201).send(user); //probably don't want to send the password hash
+  } catch (error) {
+    res.status(400).send({ error, message: 'Could not create user' });
+  }
+};
+*/
 module.exports = { createUser, checkEmail, checkUser, getAllUsers };

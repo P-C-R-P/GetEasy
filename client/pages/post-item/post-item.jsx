@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../../styles/Sign-in.module.css';
 import postStyles from '../../styles/PostItem.module.css';
 import Map from '../map/map';
 import PopUp from '../popup/popup';
-import { useState } from 'react';
 import apiService from '../../utils/api-service';
 
-export default function PostItem({ setIsCreateItem }) {
+export default function PostItem ({ setIsCreateItem }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [weight, setWeight] = useState('');
@@ -45,7 +44,7 @@ export default function PostItem({ setIsCreateItem }) {
     }
   };
 
-  async function submitHandler(event) {
+  async function submitHandler (event) {
     event.preventDefault();
     try {
       const item = await apiService.createItem({
@@ -53,20 +52,20 @@ export default function PostItem({ setIsCreateItem }) {
         description,
         weight,
         weightMeasurement,
-        userId: user.id,
+        userId: user.id
       });
       if (pickUp.length > 1 && dropOff.length > 1) {
         await apiService.createAddress({
           itemId: item.id,
-          pickUp: pickUp,
-          dropOff: dropOff,
+          pickUp,
+          dropOff
         });
       } else {
-        for (let address of addresses) {
+        for (const address of addresses) {
           await apiService.createAddress({
             itemId: item.id,
             lat: address.lat,
-            lng: address.lng,
+            lng: address.lng
           });
         }
       }

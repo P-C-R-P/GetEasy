@@ -6,7 +6,7 @@ import Dashboard from './dashboard/dashboard';
 import styles from '../styles/Dashboard.module.css';
 import { Helmet } from 'react-helmet';
 
-export default function Home() {
+export default function Home () {
   const { isSignedIn } = useContext(UserContext);
   return (
     <div className={styles.container}>
@@ -23,5 +23,5 @@ export default function Home() {
         }
       </main>
     </div>
-  )
+  );
 }

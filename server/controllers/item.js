@@ -1,6 +1,6 @@
 const db = require('../models/index');
 
-async function createItem(req, res) {
+async function createItem (req, res) {
   const { name, description, weight, userId, weightMeasurement } = req.body;
   try {
     const createdItem = await db.item.create({
@@ -14,7 +14,7 @@ async function createItem(req, res) {
     res.send(createdItem);
   } catch (error) {
     res.status = 400;
-    res.send('Failed to create item; please provide a name.');
+    res.send({ key: 'Failed to create item; please provide a name.' });
   }
 };
 

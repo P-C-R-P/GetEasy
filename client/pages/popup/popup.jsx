@@ -1,9 +1,8 @@
 import styles from '../../styles/Popups.module.css';
-import React from "react";
+import React from 'react';
 
-export default function PopUp({ title, yesBtnTtl, noBtnTtl, setAnswer, pickUpAddressSelected, setPickUpAddressSelected, setDropOffAddressSelected }) {
-
-  function handleAnswer(event) {
+export default function PopUp ({ title, yesBtnTtl, noBtnTtl, setAnswer, pickUpAddressSelected, setPickUpAddressSelected, setDropOffAddressSelected }) {
+  function handleAnswer (event) {
     if (event.target.id === 'yes') {
       if (!pickUpAddressSelected) {
         setPickUpAddressSelected(true);
@@ -11,8 +10,7 @@ export default function PopUp({ title, yesBtnTtl, noBtnTtl, setAnswer, pickUpAdd
       } else {
         setDropOffAddressSelected(true);
       }
-    }
-    else setAnswer(false);
+    } else setAnswer(false);
   }
 
   return (
@@ -23,5 +21,5 @@ export default function PopUp({ title, yesBtnTtl, noBtnTtl, setAnswer, pickUpAdd
         <button id='no' onClick={handleAnswer}>{noBtnTtl}</button>
       </div>
     </div>
-  )
-}
+  );
+};

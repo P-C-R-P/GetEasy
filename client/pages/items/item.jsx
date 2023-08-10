@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, React } from 'react';
 import styles from '../../styles/Items.module.css';
 import apiService from '../../utils/api-service';
 import Image from 'next/image';
@@ -6,7 +6,7 @@ import nextIcon from '../../public/images/next.svg';
 import { UserContext } from '../../context/user-context';
 import { useRouter } from 'next/router';
 
-export default function Item({ item }) {
+export default function Item ({ item }) {
   const router = useRouter();
   const [pointA, setPointA] = useState([]);
   const [pointB, setPointB] = useState([]);
@@ -28,7 +28,7 @@ export default function Item({ item }) {
     }
   }, []);
 
-  function onClickHandler() {
+  function onClickHandler () {
     setItem(item);
     router.replace('/details/details');
   }

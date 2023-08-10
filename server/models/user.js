@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
       name: {
         type: DataTypes.STRING,
@@ -18,16 +18,15 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false
-      },
+      }
     },
     {
-      timestamps: false,
+      timestamps: false
     }
   );
 
   User.associate = function (models) {
     User.hasMany(models.item);
   };
-  
   return User;
 };

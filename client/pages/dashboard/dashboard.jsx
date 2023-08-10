@@ -4,8 +4,7 @@ import Items from '../items/items';
 import React, { useState } from 'react';
 import styles from '../../styles/Dashboard.module.css';
 
-export default function Dashboard() {
-
+export default function Dashboard () {
   const [isCreateItem, setIsCreateItem] = useState(false);
   const [isOwnItem, setIsOwnItem] = useState(false);
 
@@ -17,11 +16,10 @@ export default function Dashboard() {
         setIsCreateItem={setIsCreateItem}
       />
       {
-        !isCreateItem ? 
-          <Items isOwnItems={isOwnItem} />
-          :
-          <PostItem setIsCreateItem={setIsCreateItem} />
+        !isCreateItem
+          ? <Items isOwnItems={isOwnItem} />
+          : <PostItem setIsCreateItem={setIsCreateItem} />
       }
     </div>
-  )
-}
+  );
+};

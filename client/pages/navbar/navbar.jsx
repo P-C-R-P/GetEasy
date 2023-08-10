@@ -2,13 +2,13 @@ import React from 'react';
 import styles from '../../styles/Navbar.module.css';
 import '../../public/images/get-easy-brand-icon.png';
 
-export default function Navbar({ setIsOwnItem, isOwnItem, setIsCreateItem }) {
-  function onClickHandler() {
+export default function Navbar ({ setIsOwnItem, isOwnItem, setIsCreateItem }) {
+  function onClickHandler () {
     setIsOwnItem((value) => !value);
     setIsCreateItem(false);
   }
 
-  function handleLogoClick() {
+  function handleLogoClick () {
     setIsOwnItem(false);
     setIsCreateItem(false);
   }

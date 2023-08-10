@@ -9,7 +9,6 @@ const createAddress = require('./controllers/address');
 
 const { getAllItems, getOwnItems } = require('./controllers/home');
 
-
 const authMiddleware = require('./middleware/auth');
 router.post('/item', authMiddleware, createItem);
 
@@ -17,7 +16,7 @@ router.post('/item', authMiddleware, createItem);
 
 router.post('/user/signup', createUser);
 router.post('/user/login', checkUser);
-router.get('/user', getAllUsers)
+router.get('/user', getAllUsers);
 
 router.post('/check-email', checkEmail);
 router.post('/offer', createOffer);

@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from '../../styles/Sign-in.module.css';
 import apiService from '../../utils/api-service';
 import { UserContext } from '../../context/user-context';
 
-export default function SignIn() {
-
+export default function SignIn () {
   const { setIsSignedIn } = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -17,7 +16,7 @@ export default function SignIn() {
     } else {
       setSelectedButton('logIn');
     }
-  }
+  };
 
   const onChangeHandler = (event) => {
     switch (event.target.id) {
@@ -31,8 +30,7 @@ export default function SignIn() {
         setPassword(event.target.value);
         break;
     }
-  }
-
+  };
 
   const submitHandler = async event => {
     if (selectedButton === 'signUp') {
@@ -40,7 +38,8 @@ export default function SignIn() {
     } else {
       logInHandler(event);
     }
-  }
+  };
+
   const logInHandler = async event => {
     event.preventDefault();
     const user = { name, email, password };
@@ -56,13 +55,13 @@ export default function SignIn() {
       .logIn(user)
       .then(data => {
         if (data.key) {
-          return alert(data.key)
+          return alert(data.key);
         }
         setIsSignedIn(true);
         localStorage.setItem('user', JSON.stringify(data));
       })
       .catch(err => console.log('Failed to sign in: ', err));
-  }
+  };
 
   const signUpHandler = async event => {
     event.preventDefault();
@@ -78,7 +77,7 @@ export default function SignIn() {
         localStorage.setItem('user', JSON.stringify(data));
       })
       .catch(err => console.log('Failed to sign in: ', err));
-  }
+  };
 
   return (
     <div className={styles.signin_container}>
@@ -89,7 +88,7 @@ export default function SignIn() {
         >
           <div className={styles.brand_logo}></div>
           <h1>Welcome to Get Easy</h1>
-          <label for="name">Name:</label>
+          <label htmlFor="name">Name:</label>
           <input
             className={styles.input}
             required
@@ -98,7 +97,7 @@ export default function SignIn() {
             onChange={(event) => onChangeHandler(event)}
             value={name}
           />
-          <label for="email">Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
             className={styles.input}
             required
@@ -108,7 +107,7 @@ export default function SignIn() {
             onChange={(event) => onChangeHandler(event)}
             value={email}
           />
-          <label for="password">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             className={styles.input}
             required
@@ -142,4 +141,4 @@ export default function SignIn() {
       </div>
     </div>
   );
-}
+};

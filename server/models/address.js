@@ -5,15 +5,15 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
 
       lat: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.FLOAT
       },
 
       lng: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.FLOAT
       },
       pickUp: {
         type: DataTypes.STRING,
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     {
-      timestamps: false,
+      timestamps: false
     }
   );
 
@@ -34,4 +34,4 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   return Address;
-}
+};
