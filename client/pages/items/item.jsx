@@ -8,8 +8,8 @@ import { useRouter } from 'next/router';
 
 export default function Item({ item }) {
   const router = useRouter();
-  const [pointA, setPointA] = useState();
-  const [pointB, setPointB] = useState();
+  const [pointA, setPointA] = useState([]);
+  const [pointB, setPointB] = useState([]);
   const { itemState, setItem } = useContext(UserContext);
 
   useEffect(() => {
@@ -44,16 +44,16 @@ export default function Item({ item }) {
       />
       <div className={styles.title_description_container}>
         <div className={styles.name}>
-          <h3 className={styles.tag}>
+          <h2 className={styles.tag}>
             <strong>Name:</strong>
-          </h3>
-          <h3 className={styles.tag_text}>{item.name}</h3>
+          </h2>
+          <h2 className={styles.tag_text}>{item.name}</h2>
         </div>
         <div className={styles.description}>
-          <h3 className={styles.tag}>
+          <h2 className={styles.tag}>
             <strong>Description:</strong>
-          </h3>
-          <h3 className={styles.tag_text}>{item.description}</h3>
+          </h2>
+          <h2 className={styles.tag_text}>{item.description}</h2>
         </div>
       </div>
       <div className={styles.destination_container}>

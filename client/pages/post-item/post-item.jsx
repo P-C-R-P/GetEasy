@@ -9,7 +9,7 @@ import apiService from '../../utils/api-service';
 export default function PostItem({ setIsCreateItem }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [weight, setWeight] = useState();
+  const [weight, setWeight] = useState('');
   const [weightMeasurement, setWeightMeasurement] = useState('kg');
 
   const [showPopup, setShowPopup] = useState(false);
@@ -55,15 +55,12 @@ export default function PostItem({ setIsCreateItem }) {
         weightMeasurement,
         userId: user.id,
       });
-      console.log('item', item);
-      if (pickUp.length > 3 && dropOff.length > 3) {
-        console.log('yayyy wooooo');
-        const address = await apiService.createAddress({
+      if (pickUp.length > 1 && dropOff.length > 1) {
+        await apiService.createAddress({
           itemId: item.id,
           pickUp: pickUp,
           dropOff: dropOff,
         });
-        console.log('address', address);
       } else {
         for (let address of addresses) {
           await apiService.createAddress({

@@ -83,44 +83,63 @@ export default function SignIn() {
   return (
     <div className={styles.signin_container}>
       <div className={styles.form_container}>
-        <form className={styles.form} onSubmit={event => submitHandler(event)} >
+        <form
+          className={styles.form}
+          onSubmit={(event) => submitHandler(event)}
+        >
           <div className={styles.brand_logo}></div>
-          <input className={styles.input}
+          <h1>Welcome to Get Easy</h1>
+          <label for="name">Name:</label>
+          <input
+            className={styles.input}
             required
-            placeholder='Name'
-            id='name'
+            placeholder="Name"
+            id="name"
             onChange={(event) => onChangeHandler(event)}
             value={name}
           />
-          <input className={styles.input}
+          <label for="email">Email:</label>
+          <input
+            className={styles.input}
             required
             type="email"
-            placeholder='Email'
-            id='email'
+            placeholder="Email"
+            id="email"
             onChange={(event) => onChangeHandler(event)}
             value={email}
           />
-          <input className={styles.input}
+          <label for="password">Password:</label>
+          <input
+            className={styles.input}
             required
-            type='password'
-            pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
-            title='Must contain at least 8 characters, including one number, one uppercase letter and one lowercase letter.'
-            placeholder='Password'
-            id='password'
+            type="password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least 8 characters, including one number, one uppercase letter and one lowercase letter."
+            placeholder="Password"
+            id="password"
             onChange={(event) => onChangeHandler(event)}
             value={password}
           />
 
-          <button className={styles.submit_btn} type='submit' value='signUp' onClick={buttonHandler} >
+          <button
+            className={styles.submit_btn}
+            type="submit"
+            value="signUp"
+            onClick={buttonHandler}
+          >
             Sign up
           </button>
 
-          <button className={styles.submit_btn} type='submit' value='logIn' onClick={buttonHandler}>
+          <button
+            className={styles.submit_btn}
+            type="submit"
+            value="logIn"
+            onClick={buttonHandler}
+          >
             Log in
           </button>
-
         </form>
       </div>
     </div>
-  )
+  );
 }

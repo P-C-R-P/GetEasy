@@ -53,11 +53,9 @@ const apiService = {
   },
 
   getPlaceNames: async (lat, lng) => {
-    // change to api key
+    // Add API Key to environment variables on your computer.
     const API_KEY = process.env.GOOGLEAPI_KEY;
-    console.log(API_KEY);
     const queryParams = encodeURI(
-      // key removed
       `latlng=${lat},${lng}&key=${API_KEY}`
     );
     return await fetch(

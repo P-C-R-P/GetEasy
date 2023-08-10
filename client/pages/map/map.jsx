@@ -75,47 +75,46 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddresses, addresse
         center={center}
         onLoad={onMapLoad}
       >
-        {
-          pointB !== {} &&
+        {pointB !== {} && (
           <>
-            {
-              response !== null && (
-                <DirectionsRenderer
-                  options={{
-                    directions: response,
-                    polylineOptions: {
-                      strokeOpacity: 1,
-                      strokeColor: '#FF0000',
-                    },
-                  }}
-                />
-              )
-            }
+            {response !== null && (
+              <DirectionsRenderer
+                options={{
+                  directions: response,
+                  polylineOptions: {
+                    strokeOpacity: 1,
+                    strokeColor: '#FF0000',
+                  },
+                }}
+              />
+            )}
             <DirectionsService
               options={DirectionsServiceOption}
               callback={directionsCallback}
             />
           </>
-        }
-        {
-          Object.keys(pointA).length >= 1 &&
+        )}
+        {Object.keys(pointA).length >= 1 && (
           <Marker
             position={{
               lat: pointA.lat,
-              lng: pointA.lng
-            }} />
-        }
-                {
-          addresses.length <= 2 &&
+              lng: pointA.lng,
+            }}
+          />
+        )}
+        {Object.keys(pointB).length >= 1 && (
           <Marker
             position={{
               lat: pointB.lat,
-              lng: pointB.lng
-            }} />
-        }
+              lng: pointB.lng,
+            }}
+          />
+        )}
       </GoogleMap>
     </>
-  ) : <></>
+  ) : (
+    <></>
+  );
 }
 
 

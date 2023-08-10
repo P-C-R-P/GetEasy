@@ -1,6 +1,5 @@
 const db = require('../models/index');
 
-// Ask Atai
 const createOffer = async (req, res) => {
   const {price, when, itemId} = req.body;
   try {

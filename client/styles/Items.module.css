@@ -10,7 +10,7 @@
 }
 
 .item_card {
-  background-color: lightgrey;
+  background-color: rgb(226, 226, 226);
   display: flex;
   position: relative;
   flex-direction: column;
@@ -50,7 +50,7 @@
 }
 
 .destination_container figcaption {
-  color: #398b27;
+  color: rgb(43, 114, 27);
   padding: 1vh;
 }
 
@@ -79,7 +79,7 @@
 
 .btn_details:hover {
   cursor: pointer;
-  fill: rgb(86, 255, 47);
+  fill: rgb(43, 114, 27);
 }
 
 .name {

@@ -5,7 +5,7 @@
   display: flex;
   width: 100%;
   background-clip: border-box;
-  border-bottom: 2px solid lightgray;
+  border-bottom: 2px solid rgb(226, 226, 226);
   justify-content: space-between;
   position: fixed;
   z-index: 1;
@@ -39,7 +39,7 @@
   width: 100%;
   justify-content: space-around;
   list-style: none;
-  color: #56ff2f;
+  color: rgb(43, 114, 27);
   text-align: center;
   text-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.25);
   font-size: 18px;
@@ -52,6 +52,16 @@
 }
 
 .button_container ul li:hover {
-  color: rgb(57, 139, 39);
+  color: rgb(43, 114, 27);
   cursor: pointer;
+}
+
+.navbar_branding {
+  display: flex;
+}
+
+.navbar_branding h1 {
+  display: flex;
+  align-self: center;
+  margin: 0 0 0 1vw;
 }

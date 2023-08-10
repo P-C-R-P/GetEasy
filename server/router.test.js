@@ -68,11 +68,6 @@ describe('post /user/signup', () => {
     expect(response.body.name).toEqual(newUser.name);
     expect(response.body.email).toEqual(newUser.email);
   });
-  // it('should return a 400 if creating a user was unsuccessful.', async () => {
-  //   const incorrectUser = { otherVariable: 'otherVariable' };
-  //   const response = await request(app).post('/user/signup').send(incorrectUser);
-  //   expect(response.status).toBe(400);
-  // });
 });
 
 describe('post /check-email', () => {
@@ -116,7 +111,7 @@ describe('post /item', () => {
     const login = await request(app)
       .post('/user')
       .send(mocks.registeredUser);
-    console.log(login.body);
+    // console.log(login.body);
     // console.log('login response', loginResponse.body);
     // const response = await request(app)
     //   .get(`user/${mocks.registeredUserWithHashedPassword.id}`)

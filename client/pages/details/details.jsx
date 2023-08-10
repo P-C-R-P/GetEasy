@@ -34,14 +34,21 @@ export default function Details() {
             <div className={styles.details_weight}>
               <h2 className={styles.item_tag}>Weight: </h2>
               <h2 className={styles.item_text}>
-                {itemState.weight}{' '}
-                {itemState.weightMeasurement}
+                {itemState.weight} {itemState.weightMeasurement}
               </h2>
             </div>
+            {itemState.addresses[0].pickUp && (
+              <div>
+                <h2>Pick up: </h2>
+                <h2>{itemState.addresses[0].pickUp}</h2>
+                <h2>Drop off: </h2>
+                <h2>{itemState.addresses[0].dropOff}</h2>
+              </div>
+            )}
           </div>
         </div>
-        <div className={styles.map_container}>
-          {itemState.addresses && (
+        {itemState.addresses[0].lat && (
+          <div className={styles.map_container}>
             <Map
               a={{
                 lat: itemState.addresses[0].lat,
@@ -52,8 +59,8 @@ export default function Details() {
                 lng: itemState.addresses[1].lng,
               }}
             />
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

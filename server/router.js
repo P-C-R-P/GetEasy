@@ -13,16 +13,11 @@ const { getAllItems, getOwnItems } = require('./controllers/home');
 const authMiddleware = require('./middleware/auth');
 router.post('/item', authMiddleware, createItem);
 
-// Change this route later.
-// CONSIDER CHANGING THIS ROUTE.
-// router.get('/user/:id', authMiddleware, getUser);
+// Add log out route
 
 router.post('/user/signup', createUser);
 router.post('/user/login', checkUser);
 router.get('/user', getAllUsers)
-// add get all users route
-
-// add log out route
 
 router.post('/check-email', checkEmail);
 router.post('/offer', createOffer);

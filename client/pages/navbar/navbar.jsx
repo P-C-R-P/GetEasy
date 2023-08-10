@@ -4,7 +4,7 @@ import '../../public/images/get-easy-brand-icon.png';
 
 export default function Navbar({ setIsOwnItem, isOwnItem, setIsCreateItem }) {
   function onClickHandler() {
-    setIsOwnItem(value => !value);
+    setIsOwnItem((value) => !value);
     setIsCreateItem(false);
   }
 
@@ -15,7 +15,14 @@ export default function Navbar({ setIsOwnItem, isOwnItem, setIsCreateItem }) {
 
   return (
     <div className={styles.navbar_container}>
-      <div id="brand-logo" onClick={() => handleLogoClick()} className={styles.brand_logo}></div>
+      <div className={styles.navbar_branding}>
+        <div
+          id="brand-logo"
+          onClick={() => handleLogoClick()}
+          className={styles.brand_logo}
+        ></div>
+        <h1>get easy</h1>
+      </div>
       <div className={styles.button_container}>
         <ul>
           <li onClick={() => onClickHandler()}>

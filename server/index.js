@@ -3,18 +3,14 @@ const app = express();
 const cors = require('cors');
 const router = require('./router');
 
-// Authentication stuff
 const session = require('express-session');
 
 const corsConfig = {
   origin: 'http://localhost:3000',
-  // do we need to define methods?
   methods: ["GET", "POST", "PUT", "OPTIONS", "HEAD"],
-  // do we need credentials?
   credentials: true,
 };
 
-// Ask Atai
 app.set('trust proxy', 1);
 app.use(
   session({

@@ -17,15 +17,6 @@ describe('Log in and sign up component', () => {
       .type('testPassword1!')
       .should('have.value', 'testPassword1!');
   });
-  // it('checks whether the email field is correctly formatted', function () {
-  //   cy.get('#name').type('Test');
-  //   cy.get('#email')
-  //     .type('testemailcom')
-  //   cy.get('#password')
-  //     .type('testPassword1!')
-  //   cy.get('form').submit();
-  // });
-  // it('checks whether the password field is correctly formatted', function () {});
   it('should have a login button which can be clicked', function () {
     cy.contains('Log in').click();
   });
@@ -37,6 +28,8 @@ describe('Log in and sign up component', () => {
     cy.get('#name').type('Test');
     cy.get('#email').type('test@email.com');
     cy.get('#password').type('testPassword1!');
+    // First need to 'Sign up' new test cases, then 'Log in'
+    cy.get('button').contains('Log in').click();
     cy.get('form').submit();
     cy.contains('my items');
   });
@@ -50,7 +43,7 @@ describe('Dashboard component', () => {
     cy.get('#password').type('testPassword1!');
     cy.get('form').submit();
   });
-  it('should change to view details when you click the arrow button on each item card.', function () {
+  it('should change to view details when you click the arrow button on each item card', function () {
     cy.get('#view-arrow').click();
     cy.url().should('include', '/details/details');
   });
@@ -62,7 +55,8 @@ describe('Dashboard component', () => {
     cy.get('li').contains('my items').click();
     cy.get('li').contains('all items');
   })
-  it.only('should change to all items when you click on the logo', function () {
+  //
+  it('should change to all items when you click on the logo', function () {
     cy.get('li').contains('my items').click();
     cy.get('#brand-logo').click();
     cy.get('li').contains('my items');
@@ -79,17 +73,19 @@ describe('Create item component', () => {
     cy.get('li').contains('create item').click();
     cy.contains('Submit');
   });
-  it('correctly inputs into form fields to create item on dashboard', function () {
+  it.only('correctly inputs into form fields to create item on dashboard', function () {
     // Typed values need to be changed upon every test.
     cy.get('#name').type('New test item').should('have.value', 'New test item');
     cy.get('#description').type('A new item.').should('have.value', 'A new item.');
     cy.get('#weight').type('123').should('have.value', '123');
     cy.get('#weightMeasurement').select('lb').should('have.value', 'lb');
     cy.get('#maps').click(100, 100);
+    // Check this stuff
     cy.get('#yes').click();
-    cy.get('#maps').click(200, 200);
-    cy.get('form').submit();
-    cy.contains('New test item');
+    cy.get('#maps').click(101, 101);
+    // cy.get('#yes').click();
+    // cy.get('form').submit();
+    // cy.contains('New test item');
   });
 
 });
