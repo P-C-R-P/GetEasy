@@ -12,8 +12,6 @@ const { getAllItems, getOwnItems } = require('./controllers/home');
 const authMiddleware = require('./middleware/auth');
 router.post('/item', authMiddleware, createItem);
 
-// Add log out route
-
 router.post('/user/signup', createUser);
 router.post('/user/login', checkUser);
 router.get('/user', getAllUsers);

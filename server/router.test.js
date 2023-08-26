@@ -91,7 +91,6 @@ describe('get /all-items', () => {
   });
 });
 
-// FINISH GETTING ITEMS FOR USER
 describe('get /:userId', () => {
   it('should return a 200 and own items.', async () => {
     const response = await request(app).get('/:userId');
@@ -100,33 +99,15 @@ describe('get /:userId', () => {
   });
 });
 
-// FINISH POSTING ITEMS
 describe('post /item', () => {
-  // MAKE AUTHENTICATION WORK
   beforeEach(async () => {
     const login = await request(app)
       .post('/user')
       .send(mocks.registeredUser);
-    // console.log(login.body);
-    // console.log('login response', loginResponse.body);
-    // const response = await request(app)
-    //   .get(`user/${mocks.registeredUserWithHashedPassword.id}`)
-    //   .set('Authorization', `bearer ${loginResponse.body.password}`)
-    //   .send({});
-    // console.log(response);
   });
   it('should return a 201 and the created item if a name is provided.', async () => {
-    // await request(app).post('/user').send(mocks.registeredUser);
     const item = mocks.item;
     const response = await request(app).post('/item').send(item);
     expect(response.status).toBe(201);
   });
-  // it('should return a 400 if no name is provided.', async () => {
-  //   const userWithWrongPassword = mocks.registeredUserWrongPassword;
-  //   const response = await request(app)
-  //     .post('/user')
-  //     .send(userWithWrongPassword);
-  //   expect(response.status).toBe(400);
-  //   expect(response.body).toEqual({ key: 'Incorrect password.' });
-  // });
 });
