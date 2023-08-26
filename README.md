@@ -55,6 +55,6 @@ npm run dev
 
 ## Contributors
 
-- [Atai Ismaiilov]('https://github.com/ismaiilov-atai/')
-- [Pablo Flores Fernández]('https://github.com/flores5545/')
-- [Philippa Payne]('https://github.com/P-C-R-P/')
+- [Atai Ismaiilov](https://github.com/ismaiilov-atai/)
+- [Pablo Flores Fernández](https://github.com/flores5545/)
+- [Philippa Payne](https://github.com/P-C-R-P/)
