@@ -5,18 +5,18 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
       price: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL
       },
 
       when: {
-        type: DataTypes.DATE,
-      },
+        type: DataTypes.DATE
+      }
     },
     {
-      timestamps: false,
+      timestamps: false
     }
   );
 

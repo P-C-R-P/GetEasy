@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styles from '../../styles/Popups.module.css';
 import React from 'react';
 

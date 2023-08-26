@@ -5,7 +5,7 @@ import SignIn from './sign-in/sign-In';
 import Dashboard from './dashboard/dashboard';
 import { Helmet } from 'react-helmet';
 
-export default function Home() {
+export default function Home () {
   const { isSignedIn } = useContext(UserContext);
 
   return (

@@ -3,7 +3,7 @@ import styles from '../../styles/Sign-in.module.css';
 import apiService from '../../utils/api-service';
 import { UserContext } from '../../context/user-context';
 
-export default function SignIn() {
+export default function SignIn () {
   const { setIsSignedIn } = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

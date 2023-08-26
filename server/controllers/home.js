@@ -3,7 +3,7 @@ const db = require('../models/index');
 const getAllItems = async (req, res) => {
   try {
     const allItems = await db.item.findAll({
-      include: [db.address, db.offer],
+      include: [db.address, db.offer]
     });
     res.status = 200;
     res.send(allItems);
@@ -17,18 +17,18 @@ const getOwnItems = async (req, res) => {
     const { userId } = req.params;
     const allOwnItems = await db.user.findOne({
       where: {
-        id: userId,
+        id: userId
       },
       include: [
         {
           model: db.item,
-          include: db.offer,
+          include: db.offer
         },
         {
           model: db.item,
-          include: db.address,
-        },
-      ],
+          include: db.address
+        }
+      ]
     });
 
     res.status = 200;

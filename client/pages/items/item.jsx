@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState, useContext, React } from 'react';
 import styles from '../../styles/Items.module.css';
 import apiService from '../../utils/api-service';
@@ -6,7 +7,7 @@ import nextIcon from '../../public/images/next.svg';
 import { UserContext } from '../../context/user-context';
 import { useRouter } from 'next/router';
 
-export default function Item({ item }) {
+export default function Item ({ item }) {
   const router = useRouter();
   const [pointA, setPointA] = useState([]);
   const [pointB, setPointB] = useState([]);

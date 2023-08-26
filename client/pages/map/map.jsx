@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import 'dotenv/config';
-import { useState, useCallback, memo, useRef } from 'react';
+import { useState, useCallback, memo, useRef, React } from 'react';
 import {
   GoogleMap,
   useLoadScript,
@@ -47,18 +48,19 @@ function Map({
     mapRef.current = map;
   }, []);
 
-  let count = useRef(0);
+  const count = useRef(0);
 
   function pickDestinations(event) {
     if (pointB.lat) return;
-    if (!pickUpAddressSelected)
+    if (!pickUpAddressSelected) {
       setPointA({ lat: event.latLng.lat(), lng: event.latLng.lng() });
-    else {
+    } else {
       setPointB({ lat: event.latLng.lat(), lng: event.latLng.lng() });
     }
     setShowPopup(true);
-    if (pickUpAddressSelected && dropOffAddressSelected)
+    if (pickUpAddressSelected && dropOffAddressSelected) {
       setAddresses([pointA, pointB]);
+    }
   }
 
   // **
@@ -74,8 +76,8 @@ function Map({
     }
   };
 
-  return isLoaded ? (
-    <>
+  return isLoaded
+    ? (<>
       <GoogleMap
         id="maps"
         mapContainerStyle={containerStyle}
@@ -125,9 +127,9 @@ function Map({
         )}
       </GoogleMap>
     </>
-  ) : (
-    <></>
-  );
+  )
+    : (
+    <></>);
 }
 
 export default memo(Map);

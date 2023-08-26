@@ -7,9 +7,9 @@ const apiService = {
       credentials: 'include',
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(user)
     }).then((res) => res.json());
   },
 
@@ -18,9 +18,9 @@ const apiService = {
       credentials: 'include',
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(user)
     }).then((res) => res.json());
   },
 
@@ -28,10 +28,10 @@ const apiService = {
     return await fetch(`${BASE_URL}/item`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       credentials: 'include',
-      body: JSON.stringify(item),
+      body: JSON.stringify(item)
     }).then((res) => res.json());
   },
 
@@ -39,16 +39,16 @@ const apiService = {
     return await fetch(`${BASE_URL}/address`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       credentials: 'include',
-      body: JSON.stringify(address),
+      body: JSON.stringify(address)
     }).then((res) => res.json());
   },
 
   getAllItems: async () => {
     return await fetch(`${BASE_URL}/all-items`, {
-      credentials: 'include',
+      credentials: 'include'
     }).then((res) => res.json());
   },
 
@@ -69,12 +69,12 @@ const apiService = {
     return await fetch(`${BASE_URL}/check-email`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       credentials: 'include',
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email })
     }).then((res) => res.json());
-  },
+  }
 };
 
 export default apiService;

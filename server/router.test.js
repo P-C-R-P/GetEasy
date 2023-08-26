@@ -6,38 +6,38 @@ const mocks = {
   registeredUser: {
     name: 'Pablo and Philippa',
     email: 'panettyfycgdp@gmail.com',
-    password: 'IamcuterthanPablo24!',
+    password: 'IamcuterthanPablo24!'
   },
   registeredUserWithHashedPassword: {
     // The password hashing may change.
     name: 'Pablo and Philippa',
     email: 'panettyfycgdp@gmail.com',
     password: '$2a$10$GlPiZP93HYfl9Av/JZTg/.8faXPhKAvpgebaN0DH9UUNoadjQHefm',
-    id: 3,
+    id: 3
   },
   item: {
     name: 'Pablo',
     description: '2000s boi',
     weight: 60,
     userId: 1,
-    weightMeasurement: 'kg',
+    weightMeasurement: 'kg'
   },
   registeredUserWrongPassword: {
     name: 'Pablo and Philippa',
     email: 'panettyfycgdp@gmail.com',
-    password: 'IamnotcuterthanPablo24!',
+    password: 'IamnotcuterthanPablo24!'
   },
   newUser1: {
     // The email should be changed every time we test for a new user.
     name: 'Me',
     email: 'ab17@gmail.com',
-    password: 'Verygoodpassword123@',
+    password: 'Verygoodpassword123@'
   },
   newUser2: {
     // The email should be changed every time we test for a new user.
     name: 'Me',
     email: 'bs79@gmail.com',
-    password: 'Verygoodpassword123@',
+    password: 'Verygoodpassword123@'
   },
 };
 

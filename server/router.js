@@ -5,7 +5,7 @@ const {
   checkEmail,
   createUser,
   checkUser,
-  getAllUsers,
+  getAllUsers
 } = require('./controllers/user');
 
 const createItem = require('./controllers/item');

@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 
 const config = {
   host: 'localhost',
-  dialect: 'postgres',
+  dialect: 'postgres'
 };
 
 const sequelize = new Sequelize(

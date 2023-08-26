@@ -6,7 +6,7 @@ import Image from 'next/image';
 import nextIcon from '../../public/images/next.svg';
 import { useRouter } from 'next/navigation';
 
-export default function Details() {
+export default function Details () {
   const { itemState } = useContext(UserContext);
   const router = useRouter();
 
