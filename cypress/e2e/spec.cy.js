@@ -82,11 +82,10 @@ describe('Create item component', () => {
     cy.get('#maps').click(100, 100);
     // Check this stuff
     cy.get('#yes').click();
-    cy.get('#maps').click(101, 101);
+    cy.get('#maps').click(200, 200).click(500, 500);
     // cy.get('#yes').click();
     // cy.get('form').submit();
     // cy.contains('New test item');
   });
-
 });
 // possibility of checking incorrect password/email combination

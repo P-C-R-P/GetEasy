@@ -38,11 +38,19 @@ export default function Details() {
               </h2>
             </div>
             {itemState.addresses[0].pickUp && (
-              <div>
-                <h2>Pick up: </h2>
-                <h2>{itemState.addresses[0].pickUp}</h2>
-                <h2>Drop off: </h2>
-                <h2>{itemState.addresses[0].dropOff}</h2>
+              <div className={styles.details_addresses}>
+                <div>
+                  <h2 className={styles.item_tag}>Pick up: </h2>
+                  <h2 className={styles.item_text}>
+                    {itemState.addresses[0].pickUp}
+                  </h2>
+                </div>
+                <div>
+                <h2 className={styles.item_tag}>Drop off: </h2>
+                <h2 className={styles.item_text}>
+                  {itemState.addresses[0].dropOff}
+                  </h2>
+                  </div>
               </div>
             )}
           </div>

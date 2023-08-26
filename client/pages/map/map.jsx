@@ -1,37 +1,43 @@
 import 'dotenv/config';
-import { useState, useCallback, memo, useRef } from "react";
+import { useState, useCallback, memo, useRef } from 'react';
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   DirectionsService,
-  DirectionsRenderer
+  DirectionsRenderer,
 } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
-  height: '100%'
+  height: '100%',
 };
 
 const center = {
   lat: 42.8757,
-  lng: 74.6036
+  lng: 74.6036,
 };
 
-
-function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddresses, addresses }) {
-
+function Map({
+  a,
+  b,
+  setShowPopup,
+  pickUpAddressSelected,
+  dropOffAddressSelected,
+  setAddresses,
+  addresses,
+}) {
   const [pointA, setPointA] = useState(a || {});
   const [pointB, setPointB] = useState(b || {});
   const [response, setResponse] = useState(null);
   const DirectionsServiceOption = {
     origin: pointA,
     destination: pointB,
-    travelMode: "DRIVING",
+    travelMode: 'DRIVING',
   };
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY,
+    googleMapsApiKey: 'AIzaSyDYWEs65yBtu51Wd3DG9_DJbl0FaydXasY',
   });
 
   const mapRef = useRef();
@@ -40,27 +46,31 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddresses, addresse
   }, []);
 
   function pickDestinations(event) {
-    if(pointB.lat) return;
     if (!pickUpAddressSelected) setPointA({ lat: event.latLng.lat(), lng: event.latLng.lng() });
     else {
-      setPointB(() => {
-        const secondPoint = { lat: event.latLng.lat(), lng: event.latLng.lng() };
-        setAddresses([pointA, secondPoint]);
-        return secondPoint;
-      });
+      setPointB({ lat: event.latLng.lat(), lng: event.latLng.lng() });
+      // setPointB(() => {
+      //   const secondPoint = {
+      //     lat: event.latLng.lat(),
+      //     lng: event.latLng.lng(),
+      //   };
+      //   setAddresses([pointA, secondPoint]);
+      //   return secondPoint;
+      // });
     }
     setShowPopup(true);
+    if (pickUpAddressSelected && dropOffAddressSelected) setAddresses([pointA, pointB]);
   }
 
   let count = useRef(0);
   const directionsCallback = (response) => {
     if (response !== null && count.current < 2) {
-      if (response.status === "OK") {
+      if (response.status === 'OK') {
         count.current += 1;
         setResponse(response);
       } else {
         count.current = 0;
-        console.log("Response: ", response);
+        console.log('Response: ', response);
       }
     }
   };
@@ -75,7 +85,7 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddresses, addresse
         center={center}
         onLoad={onMapLoad}
       >
-        {pointB !== {} && (
+        {dropOffAddressSelected && (
           <>
             {response !== null && (
               <DirectionsRenderer
@@ -94,22 +104,22 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddresses, addresse
             />
           </>
         )}
-        {Object.keys(pointA).length >= 1 && (
-          <Marker
-            position={{
-              lat: pointA.lat,
-              lng: pointA.lng,
-            }}
-          />
+        {Object.keys(pointA).length >= 1 && !dropOffAddressSelected && (
+            <Marker
+              position={{
+                lat: pointA.lat,
+                lng: pointA.lng,
+              }}
+            />
         )}
-        {Object.keys(pointB).length >= 1 && (
-          <Marker
-            position={{
-              lat: pointB.lat,
-              lng: pointB.lng,
-            }}
-          />
-        )}
+        {pickUpAddressSelected && !dropOffAddressSelected && (
+            <Marker
+              position={{
+                lat: pointB.lat,
+                lng: pointB.lng,
+              }}
+            />
+          )}
       </GoogleMap>
     </>
   ) : (
@@ -117,7 +127,4 @@ function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddresses, addresse
   );
 }
 
-
-
 export default memo(Map);
-

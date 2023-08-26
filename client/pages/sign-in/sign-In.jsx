@@ -87,9 +87,14 @@ export default function SignIn() {
           className={styles.form}
           onSubmit={(event) => submitHandler(event)}
         >
-          <div className={styles.brand_logo}></div>
+          <div className={styles.brand_logo}>
+            <img
+              className={styles.brand_logo}
+              src="/images/get-easy-brand-icon.png"
+            />
+          </div>
           <h1>Welcome to Get Easy</h1>
-          <label for="name">Name:</label>
+          <label htmlFor="name">Name:</label>
           <input
             className={styles.input}
             required
@@ -98,7 +103,7 @@ export default function SignIn() {
             onChange={(event) => onChangeHandler(event)}
             value={name}
           />
-          <label for="email">Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
             className={styles.input}
             required
@@ -108,7 +113,7 @@ export default function SignIn() {
             onChange={(event) => onChangeHandler(event)}
             value={email}
           />
-          <label for="password">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             className={styles.input}
             required
@@ -120,24 +125,25 @@ export default function SignIn() {
             onChange={(event) => onChangeHandler(event)}
             value={password}
           />
+          <div className={styles.button_div}>
+            <button
+              className={styles.submit_btn}
+              type="submit"
+              value="signUp"
+              onClick={buttonHandler}
+            >
+              Sign up
+            </button>
 
-          <button
-            className={styles.submit_btn}
-            type="submit"
-            value="signUp"
-            onClick={buttonHandler}
-          >
-            Sign up
-          </button>
-
-          <button
-            className={styles.submit_btn}
-            type="submit"
-            value="logIn"
-            onClick={buttonHandler}
-          >
-            Log in
-          </button>
+            <button
+              className={styles.submit_btn}
+              type="submit"
+              value="logIn"
+              onClick={buttonHandler}
+            >
+              Log in
+            </button>
+          </div>
         </form>
       </div>
     </div>

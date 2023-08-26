@@ -54,7 +54,7 @@ const apiService = {
 
   getPlaceNames: async (lat, lng) => {
     // Add API Key to environment variables on your computer.
-    const API_KEY = process.env.GOOGLEAPI_KEY;
+    const API_KEY = 'AIzaSyDYWEs65yBtu51Wd3DG9_DJbl0FaydXasY';
     const queryParams = encodeURI(
       `latlng=${lat},${lng}&key=${API_KEY}`
     );

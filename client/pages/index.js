@@ -3,13 +3,13 @@ import { UserContext } from '../context/user-context';
 import React, { useContext } from 'react';
 import SignIn from './sign-in/sign-In';
 import Dashboard from './dashboard/dashboard';
-import styles from '../styles/Dashboard.module.css';
+// import styles from '../styles/Dashboard.module.css';
 import { Helmet } from 'react-helmet';
 
 export default function Home() {
   const { isSignedIn } = useContext(UserContext);
   return (
-    <div className={styles.container}>
+    <div>
       <Helmet>
         <html lang="en"/>
       </Helmet>

@@ -79,13 +79,18 @@ export default function PostItem({ setIsCreateItem }) {
   return (
     <div className={postStyles.post_container}>
       <div className={postStyles.logo_input_container}>
-        <div className={postStyles.brand_logo}></div>
+        {/* <div className={postStyles.brand_logo}>
+          <img src="/images/get-easy-brand-icon.png"/>
+
+        </div> */}
 
         <div className={styles.form_container}>
           <form
             className={styles.form}
             onSubmit={(event) => submitHandler(event)}
           >
+            <h2>Create an item:</h2>
+            <label htmlFor="name">Name: </label>
             <input
               className={styles.input}
               required
@@ -94,6 +99,7 @@ export default function PostItem({ setIsCreateItem }) {
               onChange={(event) => onChangeHandler(event)}
               value={name}
             />
+            <label htmlFor="description">Description: </label>
             <input
               className={styles.input}
               required
@@ -102,7 +108,7 @@ export default function PostItem({ setIsCreateItem }) {
               onChange={(event) => onChangeHandler(event)}
               value={description}
             />
-
+            <label htmlFor="weight">Weight: </label>
             <div className={postStyles.weight_div}>
               <input
                 className={styles.input}
@@ -114,6 +120,7 @@ export default function PostItem({ setIsCreateItem }) {
                 value={weight}
               />
               <select
+                aria-label="unit"
                 className={postStyles.select_measurement}
                 name="measurement"
                 id="weightMeasurement"
@@ -128,26 +135,32 @@ export default function PostItem({ setIsCreateItem }) {
               </select>
             </div>
             <div className={postStyles.address_div}>
-              <input
-                className={styles.input}
-                id="pick-up-address"
-                placeholder="Pick up address"
-                value={pickUp}
-                onChange={(event) => onChangeHandler(event)}
-              />
-              <input
-                className={styles.input}
-                id="drop-off-address"
-                placeholder="Drop off address"
-                value={dropOff}
-                onChange={(event) => onChangeHandler(event)}
-              />
+              <div className={postStyles.address_input}>
+                <label htmlFor="pick-up-address">Pick up: </label>
+                <input
+                  className={styles.input}
+                  id="pick-up-address"
+                  placeholder="Pick up address"
+                  value={pickUp}
+                  onChange={(event) => onChangeHandler(event)}
+                />
+              </div>
+              <div className={postStyles.address_input}>
+                <label htmlFor="drop-off-address">Drop off: </label>
+                <input
+                  className={styles.input}
+                  id="drop-off-address"
+                  placeholder="Drop off address"
+                  value={dropOff}
+                  onChange={(event) => onChangeHandler(event)}
+                />
+              </div>
             </div>
 
             <button
               type="submit"
-              disabled={addresses.length !== 2}
-              className={styles.submit_btn}
+              // disabled={addresses.length !== 2}
+              className={postStyles.submit_btn}
             >
               Submit
             </button>
@@ -169,6 +182,7 @@ export default function PostItem({ setIsCreateItem }) {
         )}
         <Map
           setShowPopup={setShowPopup}
+          dropOffAddressSelected={dropOffAddressSelected}
           pickUpAddressSelected={pickUpAddressSelected}
           setAddresses={setAddresses}
           addresses={addresses}

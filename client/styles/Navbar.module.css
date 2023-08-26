@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .navbar_container {
-  font-family: 'Geologica', sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   width: 100%;
   background-clip: border-box;
@@ -11,6 +11,11 @@
   z-index: 1;
   background: white;
   top: -1px;
+  box-shadow: 5px 5px 10px 2px rgb(130, 129, 129);
+}
+
+.navbar_container h1 {
+  color: white;
 }
 
 .brand_logo {
@@ -27,6 +32,7 @@
 .brand_logo:hover {
   cursor: pointer;
 }
+
 
 .button_container {
   display: flex;
@@ -52,7 +58,7 @@
 }
 
 .button_container ul li:hover {
-  color: rgb(43, 114, 27);
+  color: rgb(18, 69, 6);
   cursor: pointer;
 }
 

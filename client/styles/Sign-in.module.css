@@ -1,71 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .signin_container {
+  width: 98vw;
+  height: 98vh;
   display: flex;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  height: 99vh;
-  width: 100vw;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
   background-image: url('../public/images/sign_back_img.svg');
   background-repeat: no-repeat;
-  align-items: center;
-  align-content: center;
-  text-align: center;
-  background-position: bottom right;
-
+  background-position: center;
+  background-size: 80% 80%;
 }
 
 .form_container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 60%;
-  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0vh 30vw 0vh 30vw;
+  border-radius: 12px;
+  padding: 2vh 0vh 2vh 0vh;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  width: 60%;
-  height: 80%;
-  justify-content: space-around;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px 30px;
-  border-radius: 40px;
-  background: rgba(233, 231, 231, 0.15);
 }
 
 .brand_logo {
-  height: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.brand_logo img {
   width: 50%;
-  align-self: center;
-  background-image: url('../public/images/get-easy-brand-icon.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+}
+
+.form h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.brand_image {
+  width: 40%;
+  margin: 1vh 0vw 1vh 2vw;
+  padding: 1vh 2vw 1vh 2vw;
+  display: flex;
+  justify-content: center;
+}
+
+.brand_image img {
+  width: 100%;
+}
+
+.form label {
+  padding: 1vh 0vw 1vh 0vw;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .input {
-  height: 40px;
+  font-family: 'Roboto', sans-serif;
+  padding: 2vh 1vw 2vh 1vw;
   border-radius: 12px;
-  border: 2px solid #888585;
-  padding: 0px 20px;
   letter-spacing: 2px;
+  border-color: #888585;
+  border-style: solid;
+}
+
+.button_div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .submit_btn {
-  font-family: 'Geologica', sans-serif;
-  font-size: 16px;
-  height: 46px;
-  width: 30%;
-  align-self: center;
-  border-radius: 10px;
-  background: #2b721b;
-  border: unset;
-  color: white;
+  margin: 4vh 0vw 2vh 0vw;
+  width: 45%;
+  font-family: 'Roboto', sans-serif;
+  padding: 2vh 1vw 2vh 1vw;
+  border-radius: 12px;
+  letter-spacing: 2px;
+  border-style: none;
+  background-color: #2b721b;
   font-weight: 800;
+  font-size: 20px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
+  color: white;
 }
