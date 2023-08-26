@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, React } from 'react';
 import { UserContext } from '../../context/user-context';
 import styles from '../../styles/Details.module.css';
 import Map from '../map/map';
@@ -6,7 +6,7 @@ import Image from 'next/image';
 import nextIcon from '../../public/images/next.svg';
 import { useRouter } from 'next/navigation';
 
-export default function Details() {
+export default function Details () {
   const { itemState } = useContext(UserContext);
   const router = useRouter();
 
@@ -60,11 +60,11 @@ export default function Details() {
             <Map
               a={{
                 lat: itemState.addresses[0].lat,
-                lng: itemState.addresses[0].lng,
+                lng: itemState.addresses[0].lng
               }}
               b={{
                 lat: itemState.addresses[1].lat,
-                lng: itemState.addresses[1].lng,
+                lng: itemState.addresses[1].lng
               }}
             />
           </div>

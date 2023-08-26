@@ -13,7 +13,7 @@ const getAllItems = async (req, res) => {
   } catch (error) {
     console.log('Get all items failed: ', error);
   }
-}
+};
 
 const getOwnItems = async (req, res) => {
   try {
@@ -22,24 +22,23 @@ const getOwnItems = async (req, res) => {
       where: {
         id: userId
       },
-        include: [
-          {
-            model: db.item,
-            include: db.offer,
-          },
-          {
-            model: db.item,
-            include: db.address,
-          }
-        ]
+      include: [
+        {
+          model: db.item,
+          include: db.offer
+        },
+        {
+          model: db.item,
+          include: db.address
+        }
+      ]
     });
 
     res.status = 200;
     res.send(allOwnItems.items);
-
   } catch (error) {
     console.log('Failed ', error);
   }
-}
+};
 
-module.exports =  { getAllItems, getOwnItems };
+module.exports = { getAllItems, getOwnItems };

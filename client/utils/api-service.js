@@ -1,53 +1,53 @@
 import 'dotenv/config';
-const Base_URL = 'http://localhost:3001';
+const BASE_URL = 'http://localhost:3001';
 
 const apiService = {
   logIn: async (user) => {
-    return await fetch(`${Base_URL}/user/login`, {
+    return await fetch(`${BASE_URL}/user/login`, {
       credentials: 'include',
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(user)
     }).then((res) => res.json());
   },
 
   signUp: async (user) => {
-    return await fetch(`${Base_URL}/user/signup`, {
+    return await fetch(`${BASE_URL}/user/signup`, {
       credentials: 'include',
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(user)
     }).then((res) => res.json());
   },
 
   createItem: async (item) => {
-    return await fetch(`${Base_URL}/item`, {
+    return await fetch(`${BASE_URL}/item`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       credentials: 'include',
-      body: JSON.stringify(item),
+      body: JSON.stringify(item)
     }).then((res) => res.json());
   },
 
   createAddress: async (address) => {
-    return await fetch(`${Base_URL}/address`, {
+    return await fetch(`${BASE_URL}/address`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       credentials: 'include',
-      body: JSON.stringify(address),
+      body: JSON.stringify(address)
     }).then((res) => res.json());
   },
 
   getAllItems: async () => {
-    return await fetch(`${Base_URL}/all-items`, { credentials: 'include' }).then((res) =>
+    return await fetch(`${BASE_URL}/all-items`, { credentials: 'include' }).then((res) =>
       res.json()
     );
   },
@@ -64,19 +64,19 @@ const apiService = {
   },
 
   getOwnItems: async (userId) => {
-    return await fetch(`${Base_URL}/${userId}`).then((res) => res.json());
+    return await fetch(`${BASE_URL}/${userId}`).then((res) => res.json());
   },
 
   checkEmail: async (email) => {
-    return await fetch(`${Base_URL}/check-email`, {
+    return await fetch(`${BASE_URL}/check-email`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       credentials: 'include',
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email })
     }).then((res) => res.json());
-  },
+  }
 };
 
 export default apiService;

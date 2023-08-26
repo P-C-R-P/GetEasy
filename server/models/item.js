@@ -1,29 +1,28 @@
 module.exports = (sequelize, DataTypes) => {
-
   const Item = sequelize.define(
     'item',
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       weight: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.FLOAT
       },
       weightMeasurement: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       }
     },
     {
-      timestamps: false,
+      timestamps: false
     }
   );
 
@@ -34,4 +33,4 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   return Item;
-}
+};
