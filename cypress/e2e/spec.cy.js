@@ -54,13 +54,13 @@ describe('Dashboard component', () => {
   it('should change to my items when you click on my items', function () {
     cy.get('li').contains('my items').click();
     cy.get('li').contains('all items');
-  })
+  });
   //
   it('should change to all items when you click on the logo', function () {
     cy.get('li').contains('my items').click();
     cy.get('#brand-logo').click();
     cy.get('li').contains('my items');
-  })
+  });
 });
 
 describe('Create item component', () => {
@@ -76,7 +76,9 @@ describe('Create item component', () => {
   it.only('correctly inputs into form fields to create item on dashboard', function () {
     // Typed values need to be changed upon every test.
     cy.get('#name').type('New test item').should('have.value', 'New test item');
-    cy.get('#description').type('A new item.').should('have.value', 'A new item.');
+    cy.get('#description')
+      .type('A new item.')
+      .should('have.value', 'A new item.');
     cy.get('#weight').type('123').should('have.value', '123');
     cy.get('#weightMeasurement').select('lb').should('have.value', 'lb');
     cy.get('#maps').click(100, 100);

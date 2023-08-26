@@ -5,24 +5,24 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       description: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       weight: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
       },
       weightMeasurement: {
-        type: DataTypes.STRING
-      }
+        type: DataTypes.STRING,
+      },
     },
     {
-      timestamps: false
+      timestamps: false,
     }
   );
 

@@ -6,11 +6,11 @@ import nextIcon from '../../public/images/next.svg';
 import { UserContext } from '../../context/user-context';
 import { useRouter } from 'next/router';
 
-export default function Item ({ item }) {
+export default function Item({ item }) {
   const router = useRouter();
   const [pointA, setPointA] = useState([]);
   const [pointB, setPointB] = useState([]);
-  const { itemState, setItem } = useContext(UserContext);
+  const { setItem } = useContext(UserContext);
 
   useEffect(() => {
     for (let i = 0; i < item.addresses.length; i++) {
@@ -28,7 +28,7 @@ export default function Item ({ item }) {
     }
   }, []);
 
-  function onClickHandler () {
+  function onClickHandler() {
     setItem(item);
     router.replace('/details/details');
   }

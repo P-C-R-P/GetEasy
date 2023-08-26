@@ -5,19 +5,17 @@ import Map from '../map/map';
 import PopUp from '../popup/popup';
 import apiService from '../../utils/api-service';
 
-export default function PostItem ({ setIsCreateItem }) {
+export default function PostItem({ setIsCreateItem }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [weight, setWeight] = useState('');
   const [weightMeasurement, setWeightMeasurement] = useState('kg');
-
   const [showPopup, setShowPopup] = useState(false);
   const [pickUpAddressSelected, setPickUpAddressSelected] = useState(false);
   const [dropOffAddressSelected, setDropOffAddressSelected] = useState(false);
   const [addresses, setAddresses] = useState([]);
   const [pickUp, setPickUp] = useState('');
   const [dropOff, setDropOff] = useState('');
-
   const user = JSON.parse(localStorage.getItem('user'));
 
   const onChangeHandler = (event) => {
@@ -44,7 +42,7 @@ export default function PostItem ({ setIsCreateItem }) {
     }
   };
 
-  async function submitHandler (event) {
+  async function submitHandler(event) {
     event.preventDefault();
     try {
       const item = await apiService.createItem({
@@ -52,20 +50,20 @@ export default function PostItem ({ setIsCreateItem }) {
         description,
         weight,
         weightMeasurement,
-        userId: user.id
+        userId: user.id,
       });
       if (pickUp.length > 1 && dropOff.length > 1) {
         await apiService.createAddress({
           itemId: item.id,
           pickUp,
-          dropOff
+          dropOff,
         });
       } else {
         for (const address of addresses) {
           await apiService.createAddress({
             itemId: item.id,
             lat: address.lat,
-            lng: address.lng
+            lng: address.lng,
           });
         }
       }
@@ -78,11 +76,6 @@ export default function PostItem ({ setIsCreateItem }) {
   return (
     <div className={postStyles.post_container}>
       <div className={postStyles.logo_input_container}>
-        {/* <div className={postStyles.brand_logo}>
-          <img src="/images/get-easy-brand-icon.png"/>
-
-        </div> */}
-
         <div className={styles.form_container}>
           <form
             className={styles.form}
@@ -155,12 +148,7 @@ export default function PostItem ({ setIsCreateItem }) {
                 />
               </div>
             </div>
-
-            <button
-              type="submit"
-              // disabled={addresses.length !== 2}
-              className={postStyles.submit_btn}
-            >
+            <button type="submit" className={postStyles.submit_btn}>
               Submit
             </button>
           </form>

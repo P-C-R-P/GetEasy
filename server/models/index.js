@@ -4,17 +4,25 @@ const Sequelize = require('sequelize');
 
 const config = {
   host: 'localhost',
-  dialect: 'postgres'
+  dialect: 'postgres',
 };
 
-const sequelize = new Sequelize('get-easy', 'postgres', `${process.env.POSTGRESQL_KEY}`, config);
+const sequelize = new Sequelize(
+  'get-easy',
+  'postgres',
+  `${process.env.POSTGRESQL_KEY}`,
+  config
+);
 const db = {};
 
 const files = fs.readdirSync(__dirname);
 
 for (const file of files) {
   if (file !== 'index.js') {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    const model = require(path.join(__dirname, file))(
+      sequelize,
+      Sequelize.DataTypes
+    );
     db[model.name] = model;
   }
 }

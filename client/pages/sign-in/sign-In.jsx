@@ -3,14 +3,14 @@ import styles from '../../styles/Sign-in.module.css';
 import apiService from '../../utils/api-service';
 import { UserContext } from '../../context/user-context';
 
-export default function SignIn () {
+export default function SignIn() {
   const { setIsSignedIn } = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [selectedButton, setSelectedButton] = useState('');
 
-  const buttonHandler = event => {
+  const buttonHandler = (event) => {
     if (event.target.value === 'signUp') {
       setSelectedButton('signUp');
     } else {
@@ -32,7 +32,7 @@ export default function SignIn () {
     }
   };
 
-  const submitHandler = async event => {
+  const submitHandler = async (event) => {
     if (selectedButton === 'signUp') {
       signUpHandler(event);
     } else {
@@ -40,7 +40,7 @@ export default function SignIn () {
     }
   };
 
-  const logInHandler = async event => {
+  const logInHandler = async (event) => {
     event.preventDefault();
     const user = { name, email, password };
     const check = await apiService.checkEmail(user.email);
@@ -53,17 +53,17 @@ export default function SignIn () {
     }
     apiService
       .logIn(user)
-      .then(data => {
+      .then((data) => {
         if (data.key) {
           return alert(data.key);
         }
         setIsSignedIn(true);
         localStorage.setItem('user', JSON.stringify(data));
       })
-      .catch(err => console.log('Failed to sign in: ', err));
+      .catch((err) => console.log('Failed to sign in: ', err));
   };
 
-  const signUpHandler = async event => {
+  const signUpHandler = async (event) => {
     event.preventDefault();
     const user = { name, email, password };
     const check = await apiService.checkEmail(user.email);
@@ -72,11 +72,11 @@ export default function SignIn () {
     }
     apiService
       .signUp(user)
-      .then(data => {
+      .then((data) => {
         setIsSignedIn(true);
         localStorage.setItem('user', JSON.stringify(data));
       })
-      .catch(err => console.log('Failed to sign in: ', err));
+      .catch((err) => console.log('Failed to sign in: ', err));
   };
 
   return (
@@ -147,4 +147,4 @@ export default function SignIn () {
       </div>
     </div>
   );
-};
+}

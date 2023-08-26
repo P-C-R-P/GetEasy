@@ -24,7 +24,6 @@
   text-align: center;
   font-size: medium;
   font-family: monospace;
-
 }
 
 .button_holder {
@@ -43,6 +42,6 @@
 }
 
 .button_holder button:first-child {
-  background-color: #62B545;
+  background-color: #62b545;
   color: white;
 }

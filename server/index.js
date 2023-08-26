@@ -2,16 +2,16 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const router = require('./router');
-
 const session = require('express-session');
 
 const corsConfig = {
   origin: 'http://localhost:3000',
   methods: ['GET', 'POST', 'PUT', 'OPTIONS', 'HEAD'],
-  credentials: true
+  credentials: true,
 };
 
 app.set('trust proxy', 1);
+
 app.use(
   session({
     name: 'sid',
@@ -22,8 +22,8 @@ app.use(
       maxAge: 1000 * 60 * 60,
       sameSite: true,
       httpOnly: true,
-      secure: false
-    }
+      secure: false,
+    },
   })
 );
 

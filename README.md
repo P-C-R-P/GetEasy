@@ -3,7 +3,7 @@
 GetEasy is a logistics platform that allows users to smoothly deliver shipments from Point A to Point B.
 
 <figure>
-    <img alt="get easy log in" width="1000vw" src="images/screenshot.png">
+    <img alt="get easy log in" width="1000vw" src="assets/screenshot.png">
 </figure>
 
 ## Getting Started

@@ -8,7 +8,7 @@ const createOffer = async (req, res) => {
     res.send(offer);
   } catch (error) {
     console.log('Failed ', error);
-  };
+  }
 };
 
 module.exports = createOffer;
