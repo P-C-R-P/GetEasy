@@ -10,7 +10,9 @@ GetEasy is a logistics platform that allows users to smoothly deliver shipments 
 
 ### Requirements
 
-- Gooogle Api Key
+- Google Api Key
+
+### Root
 
 ```
 npm i
